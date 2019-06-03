@@ -13,14 +13,6 @@ Require the [barryvdh/laravel-cors](https://github.com/barryvdh/laravel-cors) pa
 $ composer require barryvdh/laravel-cors
 ```
 
-Add the `HandleCors` middleware to the top of the `$middleware` property in `app/Http/Kernel.php` class:
-
-```php
-protected $middleware = [
-    \Barryvdh\Cors\HandleCors::class,
-    // ...
-];
-```
 [Download](https://github.com/laracli/core/archive/master.zip) and upack this source code over your new Laravel installation.
 
 ```sh
