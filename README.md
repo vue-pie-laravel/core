@@ -29,6 +29,6 @@ $ yarn install
 
 Choose a ui package and follow packages instructions:
 
-[UI Tailwaind](https://github.com/laracli/ui-tailwind)
+[UI Tailwind](https://github.com/laracli/ui-tailwind)
 
 [UI Vuetify](https://github.com/laracli/ui-vuetify)
