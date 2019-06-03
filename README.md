@@ -15,10 +15,6 @@ $ composer require barryvdh/laravel-cors
 
 [Download](https://github.com/laracli/core/archive/master.zip) and upack this source code over your new Laravel installation.
 
-```sh
-$ yarn install
-```
-
 Choose a ui package and follow packages instructions:
 
 [UI Tailwind](https://github.com/laracli/ui-tailwind)
