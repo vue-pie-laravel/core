@@ -24,5 +24,11 @@ protected $middleware = [
 [Download](https://github.com/laracli/core/archive/master.zip) and upack this source code over your new Laravel installation.
 
 ```sh
-yarn install
+$ yarn install
 ```
+
+Choose a ui package and follow packages instructions:
+
+[UI Tailwaind](https://github.com/laracli/ui-tailwind)
+
+[UI Vuetify](https://github.com/laracli/ui-vuetify)
