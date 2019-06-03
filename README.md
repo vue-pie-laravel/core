@@ -21,3 +21,8 @@ protected $middleware = [
     // ...
 ];
 ```
+[Download](https://github.com/laracli/core/archive/master.zip) and upack this source code over your new Laravel installation.
+
+```sh
+yarn install
+```
