@@ -1,5 +1,5 @@
 {
-    "name": "laravue-spa-sessions",
+    "name": "laracli-spa-core",
     "private": true,
     "scripts": {
         "serve": "vue-cli-service serve",
