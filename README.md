@@ -9,11 +9,11 @@
 
 Make sure you have installed the follwing resources in the listed order:
 
-[NodeJS 10+](https://nodejs.org)
+1) [NodeJS 10+](https://nodejs.org)
 
-[Yarn](https://yarnpkg.com/en/docs/instal)
+2) [Yarn](https://yarnpkg.com/en/docs/instal)
 
-[Vue CLI](https://cli.vuejs.org/guide/installation.html)
+3) [Vue CLI](https://cli.vuejs.org/guide/installation.html)
 
 ## Installation
 
