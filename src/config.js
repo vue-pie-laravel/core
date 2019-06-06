@@ -1,5 +1,6 @@
 const config = {
 
+    mountAppTo: '#app',
     requestPrefix: '/app',
     defaultRedirect: '/'
 
