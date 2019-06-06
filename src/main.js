@@ -1,9 +1,10 @@
 import './scss/app.scss'
 
 /**
- * Import Vue
+ * Import Vue.
  * https://vuejs.org/
  */
+
 import Vue from 'vue'
 Vue.config.productionTip = false;
 
@@ -15,6 +16,10 @@ Vue.config.productionTip = false;
 import 'lodash'
 Vue.prototype._ = window._;
 
+/**
+ * Import application configuration data.
+ */
+import config from './config'
 
 /**
  * Initialize the main application
