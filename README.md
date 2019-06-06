@@ -3,6 +3,18 @@
 ## About
 
 
+## Prerequisites
+
+> Recommend using **yarn** as preference instead of **npm** when installing any Node based packages.
+
+Make sure you have installed the follwing resources in the listed order:
+
+[NodeJS 10+](https://nodejs.org)
+
+[Yarn](https://yarnpkg.com/en/docs/instal)
+
+[Vue CLI](https://cli.vuejs.org/guide/installation.html)
+
 ## Installation
 
 [Install Laravel](https://laravel.com/docs/5.8) 5.8 or higher.
@@ -15,7 +27,9 @@ $ composer require barryvdh/laravel-cors
 
 [Download](https://github.com/laracli/core/archive/master.zip) and upack this source code over your new Laravel installation.
 
-Choose a ui package and follow packages instructions:
+Choose one of the following ui packages and follow the instructions for your choosen package to complete setup:
+
+> You may also stop here and use just the laracli\core as an empty boilerplate to build a completely bespoke SPA.
 
 [UI Tailwind](https://github.com/laracli/ui-tailwind)
 
