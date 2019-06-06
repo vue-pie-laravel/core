@@ -27,6 +27,11 @@ import config from './config'
 import router from './router'
 
 /**
+ * Import vuex store.
+ */
+import store from './store'
+
+/**
  * Import global components.
  */
 import './components'
