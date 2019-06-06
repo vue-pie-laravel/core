@@ -32,6 +32,11 @@ import router from './router'
 import store from './store'
 
 /**
+ * Import plugins
+ */
+import './plugins'
+
+/**
  * Import global components.
  */
 import './components'
