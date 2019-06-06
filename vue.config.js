@@ -7,7 +7,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 module.exports = {
 
     pwa: {
-        name: 'Laravue SPA',
+        name: 'Lara CLI SPA',
         msTileColor: '#4DBA87'
     },
 
