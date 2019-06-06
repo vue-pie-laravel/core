@@ -1,4 +1,4 @@
-# Vue-Cli Boiler Plate for Laravel 5.8+
+# Vue-Cli Boiler Plate for building an SPA with Laravel 5.8+
 
 ## About
 
