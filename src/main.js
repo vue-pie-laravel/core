@@ -9,7 +9,7 @@ import Vue from 'vue'
 Vue.config.productionTip = false;
 
 /**
- * Import Lodash
+ * Import Lodash.
  * https://lodash.com/docs
  */
 
@@ -22,7 +22,17 @@ Vue.prototype._ = window._;
 import config from './config'
 
 /**
- * Initialize the main application
+ * Import routes.
+ */
+import router from './router'
+
+/**
+ * Import global components.
+ */
+import './components'
+
+/**
+ * Import App bootstrapper.
  */
 import App from './App'
 
