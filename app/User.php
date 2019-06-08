@@ -64,7 +64,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
             };
 
-        	return $routes;
+            return $routes;
 
         });
 
