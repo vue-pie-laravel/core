@@ -3,8 +3,9 @@
 ## About
 
 **Project Status** : `Alpha` ( Concept Limbo )
-Seeking development use case adaption feedback.
-Join the Discord channel: https://discord.gg/sfwEEbh
+> Seeking development use case adaption feedback.
+>
+> Join the Discord channel: https://discord.gg/sfwEEbh
 
 The aim of this project is to provide developers with a Standard Tooling configuration for [Vue CLI](https://cli.vuejs.org) to replace [Laravel Mix](https://laravel.com/docs/5.8/mix) and provide compatability between Laravel and a Single Page Application (SPA).
 
@@ -64,3 +65,23 @@ Choose one of the following ui packages and follow the instructions for your cho
 [UI Tailwind](https://github.com/laracli/ui-tailwind)
 
 [UI Vuetify](https://github.com/laracli/ui-vuetify)
+
+You are now all set.
+
+# FAQ
+
+### CSRF TOKEN
+
+> How is the csrf_token() handled, I dont see it in the blade template?
+
+The CSRF token has been elevated to the response header and is now handled passively in a similar mannor as an XSRF-TOKEN.
+
+An Axios response interceptor detects the token and automatically sets it in your SPA, the token can be accessed using these variable references: `window.Laravel.csrfToken` or `this.$Laravel.csrfToken` in a Vue component. You will find the Laravel object if you explore Vuex in the Dev Tools.
+
+Token exchange is Sparse, meaning it is only sent when needed, typically this is when a guest becomes an authed user visa versa, or the token is revoked. You will not see the token in every header response or request.
+
+The token is automatically sent with every POST request, no need for a hidden field.
+
+If you are using **SOCKETS**, it is already compatible with [Laravel Echo](https://github.com/laravel/echo) without extra configuration.
+
+In conclusion, You should never have to think about the CSRF Token ever again.
