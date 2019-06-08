@@ -2,6 +2,31 @@
 
 ## About
 
+**Project Status** : `Alpha` ( Concept Limbo )
+Seeking development use case adaption feedback.
+Join the Discord channel: https://discord.gg/sfwEEbh
+
+The aim of this project is to provide developers with a Standard Tooling configuration for [Vue CLI](https://cli.vuejs.org) to replace [Laravel Mix](https://laravel.com/docs/5.8/mix) and provide compatability between Laravel and a Single Page Application (SPA).
+
+Default setup is focused on Same Domain Applications (SDA) for UI backend services but can be adopted for other use cases.
+The benefit and intention is to move view rendering costs from the server to the client to save you $£€ by only serving a lightweight JSON REST service.
+
+By popular request, first focus is on JSON REST services driven by standard session based http requests for an SDA, keeping the API area of Laravel free for use with external applications that have seperate functionality but for the same data set.
+
+Basic Token Atuh, OAuth, OpenID, JWT etc will be secondary support for advanced users.
+
+The project is made up of multiple repositories that make up a 3 part system (**CORE**, **UI**, **AUTH**) with multiple options.
+You can simple use the examples as just mere code based guides for creating your own configurations.
+
+**CORE**
+Is the base that configures a blank working environment with Vue Standard Tooling and basic Laravel compatability.
+Provides data exposers for Routes, Translations, CSRF Token and Authed User.
+
+**UI**
+Various get me started configurations for popular UI Frontend Frameworks.
+
+**AUTH**
+Various UI authentication examples.
 
 ## Prerequisites
 
