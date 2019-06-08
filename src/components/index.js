@@ -13,8 +13,7 @@ import Vue from 'vue'
  *
  * === Asyncronous import example (Code splitting) ===
  *
- * const MyAsyncExample = () => import('my-async-example');
- * Vue.component('my-async-example', MyAsyncExample);
+ * Vue.component('my-async-example', () => import('my-async-example'));
  */
  
  
