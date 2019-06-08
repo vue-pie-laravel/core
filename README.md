@@ -15,17 +15,22 @@ By popular request, first focus is on JSON REST services driven by standard sess
 
 Basic Token Atuh, OAuth, OpenID, JWT etc will be secondary support for advanced users.
 
-The project is made up of multiple repositories that make up a 3 part system (**CORE**, **UI**, **AUTH**) with multiple options.
-You can simple use the examples as just mere code based guides for creating your own configurations.
+## Important
+> The project is made up of multiple repositories that make up a 3 part system (**CORE**, **UI**, **AUTH**) with multiple options.
+>
+> You can simple use the examples as just mere code based guides for creating your own configurations.
 
-**CORE**
+### CORE
+
 Is the base that configures a blank working environment with Vue Standard Tooling and basic Laravel compatability.
 Provides data exposers for Routes, Translations, CSRF Token and Authed User.
 
-**UI**
+### UI
+
 Various get me started configurations for popular UI Frontend Frameworks.
 
-**AUTH**
+### AUTH
+
 Various UI authentication examples.
 
 ## Prerequisites
