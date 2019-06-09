@@ -15,7 +15,7 @@ requirePlugin.keys().forEach(source => {
         if(plugins.hasOwnProperty(name)) {
 
             const config = plugins[name] || {};
-            const enabled = config.enabled || true;
+            const enabled = config.enabled == null ? true : config.enabled;
 
             if(enabled) {
 
