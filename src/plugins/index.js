@@ -15,8 +15,14 @@ requirePlugin.keys().forEach(source => {
         if(plugins.hasOwnProperty(name)) {
 
             const config = plugins[name] || {};
-            Vue.use(plugin.default || plugin, config);
+            const enabled = config.enabled || true;
 
+            if(enabled) {
+
+                Vue.use(plugin.default || plugin, config);
+
+            }
+            
         }
 
     }
