@@ -113,11 +113,11 @@ export default {
                     switch (error.response.status) {
 
                         case 401: // Unauthorized
-                            router.app.$laravel.reset();
+                            router.app.$emit('unauthorized');
                             break;
 
                         case 419: // Authentication Timeout
-                            router.app.$laravel.reset();
+                            router.app.$emit('auth-timeout');
                             break
 
                     }
