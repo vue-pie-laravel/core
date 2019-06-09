@@ -11,9 +11,13 @@ requirePlugin.keys().forEach(source => {
 
         const name = context[context.index];
         const plugin = requirePlugin(source);
-        const config = plugins[name] || {};
 
-        Vue.use(plugin.default || plugin, config);
+        if(plugins.hasOwnProperty(name)) {
+
+            const config = plugins[name] || {};
+            Vue.use(plugin.default || plugin, config);
+
+        }
 
     }
 
