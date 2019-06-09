@@ -1,5 +1,9 @@
 # Vue-Cli Boiler Plate for building an SPA with Laravel 5.8+
 
+### CORE IS IN DEVELOPMENT ###
+
+> Some file that are critical to the funcionality of this source are still being worked on and will be added soon.
+
 ## About
 
 **Project Status** : `Alpha` ( Concept Limbo )
