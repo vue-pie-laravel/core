@@ -50,6 +50,25 @@ window.App = new Vue({
 
     render: h => h(App),
     store,
-    router
+    router,
+    
+    data: () => ({
+
+        loading: 0,
+        csrfToken: ''
+
+    }),
+    
+    computed: {
+
+        ...mapState(['user','isAuthenticating','isAuthenticated','isInitializing']),
+
+        isLoading () {
+
+            return this.loading > 0;
+
+        }
+
+    }
 
 }).$mount(config.mountAppTo);
