@@ -113,11 +113,11 @@ export default {
                     switch (error.response.status) {
 
                         case 401: // Unauthorized
-                            router.app.$emit('unauthorized');
+                            router.app.$root.$emit('unauthorized');
                             break;
 
                         case 419: // Authentication Timeout
-                            router.app.$emit('auth-timeout');
+                            router.app.$root.$emit('auth-timeout');
                             break
 
                     }
