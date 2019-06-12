@@ -4,7 +4,9 @@ import router from '../../router'
 export default {
 
     install(Vue, options = {
+
         baseURL: null
+
     }) {
 
         if (this.installed)
@@ -68,7 +70,7 @@ export default {
                     const token = response.headers['x-csrf-token'];
 
                     axios.defaults.headers.common['X-CSRF-TOKEN'] = token;
-                    router.app.csrfToken = token;
+                    window.csrfToken = router.app.csrfToken = token;
                 }
 
                 router.app.loading--;
@@ -105,7 +107,7 @@ export default {
                     const token = error.response.headers['x-csrf-token'];
 
                     axios.defaults.headers.common['X-CSRF-TOKEN'] = token;
-                    router.app.csrfToken = token;
+                    window.csrfToken = router.app.csrfToken = token;
                 }
 
                 if (error.response.hasOwnProperty('status')) {
@@ -132,7 +134,6 @@ export default {
                 return Promise.reject(error);
 
             }
-
         );
 
     }
