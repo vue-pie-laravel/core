@@ -1,68 +1,65 @@
-import {get, eachRight, replace} from 'lodash'
-import {config} from '~/config'
-import router from '~/router'
+import Laravel from './module'
+import store from '~/store'
+import axios from 'axios'
+
+import { mapActions } from 'vuex'
+import { config } from '~/config'
 
 export default {
 
-    install: (Vue, options = {}) => {
+    install: (Vue, options = {
 
-        Vue.prototype.$laravel = {
+    }) => {
 
-            routes: [],
-            translations: {},
+        store.commit('setInitializing', true, {root: true});
 
-            reset() {
+        store.registerModule('Laravel', Laravel);
 
-                router.app.$store.commit('setUser', null, {root: true});
-                router.app.$store.commit('setAuthenticated', false, {root: true});
+        axios.get(config.requestPrefix).then(response => {
 
-            },
+            if (response.data.hasOwnProperty('routes'))
+                store.commit('Laravel/setRoutes', response.data.routes);
 
-            route() {
+            if (response.data.hasOwnProperty('translations'))
+                store.commit('Laravel/setTranslations', response.data.translations);
 
-                const args = Array.prototype.slice.call(arguments);
-                const name = args.shift();
+            if (response.data.hasOwnProperty('version'))
+                store.comit('Laravel/setVersion', response.data.version);
 
-                let route = this.routes.find(item => item.name === name);
+            // TODO check routes are set else set init failed state.
+            store.commit('setInitializing', false, {root: true});
 
-                if (!!!route) {
-                    console.error('Unknown route ', name);
-                    return '404';
-                }
+        }).catch(error => {
 
-                return '/' + route.uri.split('/').map(s => s[0] === '{' ? args.shift() : s).join('/');
+            // TODO : Handle error
+            console.error(error, 'data', error.data, 'code', error.code);
 
-            },
+            // TODO pickup if timeout
+            store.commit('setInitializing', 'offline', {root: true});
 
-            translate(string, args) {
+        });
 
-                let value = get(this.translations, string);
+        Vue.mixin({
 
-                eachRight(args, (paramVal, paramKey) => {
-                    value = replace(value, `:${paramKey}`, paramVal);
-                });
+            methods: {
 
-                return value;
+                ...mapActions({
+                    route: 'laravel/route',
+                    trans: 'laravel/trans',
+                    __: 'laravel/trans'
+                })
 
             }
 
+        });
+
+        // Laravel Echo Support
+        window.Laravel = {
+
+            csrfToken: window.csrfToken
+
         };
 
-        // Global shorthand helpers
-
-        window.Laravel = Vue.prototype.$laravel;
-        window.route = Vue.prototype.$laravel.route;
-        window.trans = Vue.prototype.$laravel.translate;
-
-        // Vue template bind helpers
-
-        Vue.trans = Vue.prototype.$laravel.translate;
-        Vue.prototype.$trans = Vue.prototype.$laravel.translate;
-
-        // Events listeners
-
-        //router.app.$on('unauthorized', window.Laravel.reset());
-        //router.app.$on('auth-timeout', window.Laravel.reset());
     }
 
-}
+};
