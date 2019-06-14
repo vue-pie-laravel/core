@@ -7,15 +7,15 @@ import { config } from '~/config'
 
 export default {
 
-    install: (Vue, options = {
-
-    }) => {
+    install: (Vue, options = {}) => {
 
         store.commit('setInitializing', true, {root: true});
 
         store.registerModule('Laravel', Laravel);
 
         axios.get(config.requestPrefix).then(response => {
+
+            store.commit('setOffline', false, {root: true});
 
             if (response.data.hasOwnProperty('routes'))
                 store.commit('Laravel/setRoutes', response.data.routes);
@@ -27,7 +27,6 @@ export default {
                 store.comit('Laravel/setVersion', response.data.version);
 
             // TODO check routes are set else set init failed state.
-            store.commit('setInitializing', false, {root: true});
 
         }).catch(error => {
 
@@ -35,7 +34,11 @@ export default {
             console.error(error, 'data', error.data, 'code', error.code);
 
             // TODO pickup if timeout
-            store.commit('setInitializing', 'offline', {root: true});
+            store.commit('setOffline', true, {root: true});
+
+        }).finally(() => {
+
+            store.commit('setInitializing', false, {root: true});
 
         });
 
