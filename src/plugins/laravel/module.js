@@ -19,9 +19,12 @@ export default {
         route() {
 
             const args = Array.prototype.slice.call(arguments);
+
+            const module = args.shift();
+
             const name = args.shift();
 
-            let route = this.routes.find(item => item.name === name);
+            let route = module.state.routes.find(item => item.name === name);
 
             if (!!!route) {
                 console.error('Unknown route ', name);
@@ -32,9 +35,9 @@ export default {
 
         },
 
-        translate(string, args) {
+        translate({state}, string, args) {
 
-            let value = get(this.translations, string);
+            let value = get(state.translations, string);
 
             eachRight(args, (paramVal, paramKey) => {
                 value = replace(value, `:${paramKey}`, paramVal);
