@@ -19,7 +19,7 @@ Vue.prototype._ = window._;
 /**
  * Import application configuration data.
  */
-import config from './config'
+import { config } from './config'
 
 /**
  * Import routes.
@@ -46,6 +46,17 @@ import './components'
  */
 import App from './App'
 
+/**
+ * Import Vuex mappers.
+ */
+
+import { mapState, mapGetters } from 'vuex'
+
+/**
+ * Initialize Vue App Instance.
+ * 
+ * @type {Vue | any}
+ */
 window.App = new Vue({
 
     render: h => h(App),
@@ -59,13 +70,56 @@ window.App = new Vue({
 
     }),
     
+    mounted() {
+
+        this.$emit('mounted');
+
+    },
+    
     computed: {
 
-        ...mapState(['user','isAuthenticating','isAuthenticated','isInitializing']),
+        ...mapState(['user', 'isAuthenticating', 'isAuthenticated', 'isOffline']),
 
-        isLoading () {
+        ...mapGetters(['isInitializing']),
+
+        isLoading() {
 
             return this.loading > 0;
+
+        }
+
+    },
+
+    watch: {
+
+        isInitializing(value) {
+
+            this.$emit('isInitializing', value);
+
+            if (!value) {
+
+                this.$emit('initialized', this);
+
+            }
+
+
+        },
+
+        isAuthenticating(value) {
+
+            this.$emit('isAuthenticating', value);
+
+        },
+
+        isAuthenticated(value) {
+
+            this.$emit('isAuthenticated', value);
+
+            if (value) {
+
+                this.$emit('authenticated', this);
+
+            }
 
         }
 
