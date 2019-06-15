@@ -5,7 +5,7 @@ import { mapActions } from 'vuex'
 
 export const hook = (vm) => {
 
-    vm.$on('initialized', (vm) => {
+    vm.$on('app:initialized', () => {
 
         vm.authCheck();
 
