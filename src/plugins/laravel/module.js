@@ -12,19 +12,27 @@ export default {
 
     },
 
-    getters: {},
+    getters: {
 
-    actions: {
+        translate: state => ( string, args ) => {
 
-        route() {
+            let text = get(state.translations, string);
 
-            const args = Array.prototype.slice.call(arguments);
+            if(args) {
 
-            const module = args.shift();
+                eachRight(args, (paramVal, paramKey) => {
+                    text = replace(text, `:${paramKey}`, paramVal);
+                });
 
-            const name = args.shift();
+            }
 
-            let route = module.state.routes.find(item => item.name === name);
+            return text;
+
+        },
+
+        route: state => ( name, args ) => {
+
+            let route = state.routes.find(item => item.name === name);
 
             if (!!!route) {
                 console.error('Unknown route ', name);
@@ -32,18 +40,6 @@ export default {
             }
 
             return '/' + route.uri.split('/').map(s => s[0] === '{' ? args.shift() : s).join('/');
-
-        },
-
-        translate({state}, string, args) {
-
-            let value = get(state.translations, string);
-
-            eachRight(args, (paramVal, paramKey) => {
-                value = replace(value, `:${paramKey}`, paramVal);
-            });
-
-            return value;
 
         }
 
