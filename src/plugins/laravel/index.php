@@ -2,7 +2,6 @@ import Laravel from './module'
 import store from '~/store'
 import axios from 'axios'
 
-import { mapActions } from 'vuex'
 import { config } from '~/config'
 
 export default {
@@ -46,11 +45,23 @@ export default {
 
             methods: {
 
-                ...mapActions({
-                    route: 'laravel/route',
-                    trans: 'laravel/trans',
-                    __: 'laravel/trans'
-                })
+                route(name, args) {
+
+                    return store.getters['Laravel/route'](name, args);
+
+                },
+
+                trans(string, args) {
+
+                    return store.getters['Laravel/translate'](string, args);
+
+                },
+
+                __(string, args) {
+
+                    return store.getters['Laravel/translate'](string, args);
+
+                }
 
             }
 
