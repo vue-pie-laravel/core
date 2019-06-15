@@ -70,12 +70,6 @@ window.App = new Vue({
 
     }),
     
-    mounted() {
-
-        this.$emit('mounted');
-
-    },
-    
     computed: {
 
         ...mapState(['user', 'isAuthenticating', 'isAuthenticated', 'isOffline']),
