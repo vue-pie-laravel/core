@@ -113,11 +113,7 @@ window.App = new Vue({
 
         isAuthenticated(value) {
 
-            if (value) {
-
-                this.$emit('app:authenticated');
-
-            }
+            this.$emit('app:authenticated', value);
 
         }
 
