@@ -94,11 +94,11 @@ window.App = new Vue({
 
         isInitializing(value) {
 
-            this.$emit('isInitializing', value);
+            this.$emit('app:initializing', value);
 
             if (!value) {
 
-                this.$emit('initialized', this);
+                this.$emit('app:initialized');
 
             }
 
@@ -107,17 +107,15 @@ window.App = new Vue({
 
         isAuthenticating(value) {
 
-            this.$emit('isAuthenticating', value);
+            this.$emit('app:authenticating', value);
 
         },
 
         isAuthenticated(value) {
 
-            this.$emit('isAuthenticated', value);
-
             if (value) {
 
-                this.$emit('authenticated', this);
+                this.$emit('app:authenticated');
 
             }
 
