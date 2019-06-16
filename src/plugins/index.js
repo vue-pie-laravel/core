@@ -55,7 +55,7 @@ requirePlugin.keys().forEach(source => {
 
     const context = source.match(/\/(\w+)\//);
 
-    if(!!context) {
+    if(context != null) {
 
         const name = context[context.index];
         const plugin = requirePlugin(source);
