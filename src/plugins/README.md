@@ -12,23 +12,43 @@ Plugins can `emit` their own events and other plugins listen for them.
 
 # Creating a Plugin
 
-// TODO
+// TODO Document
 
 ### Plugin Configuration Data
 
-// TODO
+// TODO Document
 
 ### Disabling a plugin
 
-// TODO
+// TODO Document
 
 ## Plugin Hooks
 
-// TODO
+A plugin hook allows you to hook into the Vue instance, `vm` is a reference to the instance of Vue that triggred it.
+
+You can use this to acces the `$root` data and logic as well as any references and other features available.
+
+For example you can use a hook to establish an event listener from within the plugin and run plugin logic on **Life Cycle Events** from Vue, App Events and Custom Events, See **Hook LifeCycle events** below for a list of supported default events.
+
+```javascript
+export const hook = (vm) => {
+
+    vm.$on('app:initialized', () => {
+
+        vm.authCheck();
+
+    });
+
+};
+```
+
+The above example triggers the `authCheck` method registered by another plugin.
+
+It is easy to share logic btween plugins, establish events and listners between them as well as the main Vue instance and it's components.
 
 ### Hook LifeCycle events
 
-// TODO
+// TODO Document
 
 ##### hook:beforeMount
 
