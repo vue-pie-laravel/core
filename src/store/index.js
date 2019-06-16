@@ -12,17 +12,17 @@ const store = new Vuex.Store({
 
     state: {
 
-        user: null,
+        user: {},
 
         initializers: 0,
 
         isAuthenticating: config.authentication,
 
         isAuthenticated: false,
+        
+        isMaintenanceMode: false,
 
         isOffline: false,
-
-        inMaintenance: false
 
     },
 
@@ -71,19 +71,13 @@ const store = new Vuex.Store({
 
         setMaintenanceMode(state, payload) {
 
-            state.inMaintenance = payload;
+            state.isMaintenanceMode = payload;
 
         }
 
     },
 
     getters: {
-
-        user: state => {
-
-            return state.user || {};
-
-        },
 
         isInitializing: state => {
 
