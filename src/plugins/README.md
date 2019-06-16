@@ -34,6 +34,10 @@ Plugins can `emit` their own events and other plugins listen for them.
 
 ##### hook:mounted
 
+##### hook:beforeUpdate
+
+##### hook:updated
+
 ##### app:initializing
 
 ##### app:initialized
