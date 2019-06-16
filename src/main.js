@@ -32,12 +32,12 @@ import router from './router'
 import store from './store'
 
 /**
- * Import plugins
+ * Import plugins.
  */
 import './plugins'
 
 /**
- * Import global components.
+ * Import components.
  */
 import './components'
 
@@ -51,6 +51,18 @@ import App from './App'
  */
 
 import { mapState, mapGetters } from 'vuex'
+
+Vue.mixin({
+
+    computed: {
+
+        ...mapState(['user', 'isAuthenticating', 'isAuthenticated', 'isOffline']),
+
+        ...mapGetters(['isInitializing']),
+
+    }
+
+});
 
 /**
  * Initialize Vue App Instance.
@@ -71,10 +83,6 @@ window.App = new Vue({
     }),
     
     computed: {
-
-        ...mapState(['user', 'isAuthenticating', 'isAuthenticated', 'isOffline']),
-
-        ...mapGetters(['isInitializing']),
 
         isLoading() {
 
