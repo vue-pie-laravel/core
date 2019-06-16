@@ -15,9 +15,7 @@ export const hook = (vm) => {
 
 export default {
 
-    install: (Vue, options = {
-
-    }) => {
+    install: (Vue) => {
 
         store.registerModule('Laravel/Sessions', Sessions);
 
