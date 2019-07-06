@@ -58,6 +58,8 @@ It is easy to share logic btween plugins, establish events and listners between 
 
 ##### hook:updated
 
+##### app:booted
+
 ##### app:initializing
 
 ##### app:initialized
