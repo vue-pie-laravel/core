@@ -1,5 +1,4 @@
 import Vue from 'vue'
-
 import Vuex from 'vuex'
 
 Vue.use(Vuex);
@@ -16,10 +15,10 @@ const store = new Vuex.Store({
 
         initializers: 0,
 
-        isAuthenticating: config.authentication,
+        isAuthenticating: false,
 
         isAuthenticated: false,
-        
+
         isMaintenanceMode: false,
 
         isOffline: false,
@@ -28,7 +27,7 @@ const store = new Vuex.Store({
 
     mutations: {
 
-        setUser(state, payload) {
+        SET_USER(state, payload) {
 
             if (typeof payload !== 'object')
                 return;
@@ -38,7 +37,7 @@ const store = new Vuex.Store({
 
         },
 
-        setInitializing(state, payload) {
+        SET_INITIALIZING(state, payload) {
 
             if (payload) {
 
@@ -51,25 +50,25 @@ const store = new Vuex.Store({
 
         },
 
-        setAuthenticating(state, payload) {
+        SET_AUTHENTICATING(state, payload) {
 
             state.isAuthenticating = payload;
 
         },
 
-        setAuthenticated(state, payload) {
+        SET_AUTHENTICATED(state, payload) {
 
             state.isAuthenticated = payload;
 
         },
 
-        setOffline(state, payload) {
+        SET_OFFLINE(state, payload) {
 
             state.isOffline = payload;
 
         },
 
-        setMaintenanceMode(state, payload) {
+        SET_MAINTENANCE_MODE(state, payload) {
 
             state.isMaintenanceMode = payload;
 
@@ -79,9 +78,27 @@ const store = new Vuex.Store({
 
     getters: {
 
+        isOffline: state => {
+
+            return state.isOffline;
+
+        },
+
         isInitializing: state => {
 
             return state.initializers > 0;
+
+        },
+
+        isAuthenticating: state => {
+
+            return state.isAuthenticating;
+
+        },
+
+        isAuthenticated: state => {
+
+            return state.isAuthenticated;
 
         }
 

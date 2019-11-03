@@ -1,4 +1,4 @@
-import { config } from '~/config'
+import {config} from '~/config'
 import router from '~/router'
 
 export default {
@@ -7,21 +7,22 @@ export default {
 
     actions: {
 
-        login({ commit, rootState }, input) {
-
-            commit('setAuthenticating', true, { root: true });
+        login({commit, rootState}, input) {
+alert('auth');
+            commit('SET_AUTHENTICATING', true, {root: true});
 
             return new Promise((resolve, reject) => {
 
                 router.app.$http.post(route('login'), input).then(response => {
 
-                    commit('setUser', response.data.user, { root: true });
-                    commit('setAuthenticating', false, { root: true });
+                    commit('SET_USER', response.data.user, {root: true});
+                    commit('SET_AUTHENTICATING', false, {root: true});
                     resolve(response);
 
                 }).catch(error => {
-
-                    commit('setAuthenticating', false, { root: true });
+console.log('error', error.response);
+                    //commit('SET_OFFLINE', true, {root: true});
+                    commit('SET_AUTHENTICATING', false, {root: true});
                     reject(error);
 
                 });
@@ -30,17 +31,17 @@ export default {
 
         },
 
-        logout({ dispatch }) {
+        logout({dispatch}) {
 
             router.app.$http.post(route('logout')).catch(error => {
-                
+
                 // TODO Handle logout error
                 console.error(error);
-                
+
             }).finally(() => {
-                
+
                 dispatch('check');
-                
+
             });
 
         },
@@ -50,8 +51,12 @@ export default {
             return new Promise((resolve, reject) => {
 
                 router.app.$http.post(route('password.email'), {email: input.email})
-                    .then(response => { resolve(response); })
-                    .catch(error => { reject(error); });
+                    .then(response => {
+                        resolve(response);
+                    })
+                    .catch(error => {
+                        reject(error);
+                    });
 
             });
 
@@ -76,19 +81,19 @@ export default {
 
         },
 
-        check({ commit }, vm) {
+        check({commit}, vm) {
 
-            commit('setAuthenticating', true, { root: true });
+            commit('SET_AUTHENTICATING', true, {root: true});
 
             router.app.$http.get(router.app.route('app.user')).then(response => {
 
-                commit('setUser', response.data, {root: true});
+                commit('SET_USER', response.data, {root: true});
 
                 const redirect = router.currentRoute.query.hasOwnProperty('redirect') && !!router.currentRoute.query.redirect
                     ? router.currentRoute.query.redirect : router.currentRoute.path;
 
                 router.push(redirect, () => {
-                    commit('setAuthenticating', false, {root: true});
+                    commit('SET_AUTHENTICATING', false, {root: true});
                 });
 
             }).catch(error => {
@@ -97,16 +102,16 @@ export default {
 
             }).finally(() => {
 
-                commit('setAuthenticating', false, {root: true});
+                commit('SET_AUTHENTICATING', false, {root: true});
 
             });
 
         },
 
-        reset({ commit }) {
+        reset({commit}) {
 
-            commit('setUser', null, {root: true});
-            commit('setAuthenticated', false, {root: true});
+            commit('SET_USER', null, {root: true});
+            commit('SET_AUTHENTICATED', false, {root: true});
 
         }
 

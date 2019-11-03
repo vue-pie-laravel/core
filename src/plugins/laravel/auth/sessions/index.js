@@ -1,5 +1,5 @@
-import Sessions from './module'
 import store from '~/store'
+import Sessions from '../../modules/Session'
 
 import { mapActions } from 'vuex'
 
@@ -7,7 +7,8 @@ export const hook = (vm) => {
 
     vm.$on('app:initialized', () => {
 
-        vm.authCheck();
+        if(store.state.isOffline === false)
+            vm.authCheck();
 
     });
 

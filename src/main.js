@@ -1,4 +1,4 @@
-import './scss/app.scss'
+import './sass/app.scss'
 
 /**
  * Import Vue.
@@ -61,9 +61,9 @@ Vue.mixin({
 
     computed: {
 
-        ...mapState(['user', 'isAuthenticating', 'isAuthenticated', 'isOffline']),
+        ...mapState(['user']),
 
-        ...mapGetters(['isInitializing']),
+        ...mapGetters(['isOffline', 'isInitializing', 'isAuthenticating', 'isAuthenticated']),
 
     }
 
@@ -71,7 +71,7 @@ Vue.mixin({
 
 /**
  * Initialize Vue App Instance.
- * 
+ *
  * @type {Vue | any}
  */
 window.App = new Vue({
@@ -79,14 +79,14 @@ window.App = new Vue({
     render: h => h(App),
     store,
     router,
-    
+
     data: () => ({
 
         loading: 0,
         csrfToken: ''
 
     }),
-    
+
     computed: {
 
         isLoading() {
