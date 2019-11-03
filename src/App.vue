@@ -11,7 +11,7 @@
     export default {
 
         name: 'App',
-        
+
         computed: {
 
             meta() {
@@ -25,8 +25,8 @@
 
                 if (this.isInitializing)
                     return 'layout-initializing';
-                
-                if(this.$root.isAuthenticating)
+
+                if(this.isAuthenticating)
                     return 'layout-initializing';
 
                 if (this.isMaintenanceMode)
@@ -38,7 +38,7 @@
                 if (this.meta.hasOwnProperty('noAuth') && this.meta.noAuth)
                     return `layout-${layout}`;
 
-                // The route requires auth, if not authenticated then render auth layout. 
+                // The route requires auth, if not authenticated then render auth layout.
                 if (this.isAuthenticated === false)
                     return 'layout-auth';
 
