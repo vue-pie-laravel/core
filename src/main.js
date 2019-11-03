@@ -37,6 +37,11 @@ import store from './store'
 import './plugins'
 
 /**
+ * Import layouts
+ */
+import './layouts'
+
+/**
  * Import components.
  */
 import './components'
