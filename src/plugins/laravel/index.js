@@ -1,11 +1,13 @@
 import store from '~/store'
 import Laravel from './modules/Laravel'
+import Sessions from './modules/Session'
 
 export default {
 
     install: (Vue, options = {}) => {
 
         store.registerModule('Laravel', Laravel);
+        store.registerModule(['Laravel','Sessions'], Sessions);
 
         store.dispatch('Laravel/initialize');
 
