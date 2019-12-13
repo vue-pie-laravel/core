@@ -3,8 +3,6 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex);
 
-import {config} from '~/config';
-
 const store = new Vuex.Store({
 
     namespaced: true,
@@ -78,27 +76,9 @@ const store = new Vuex.Store({
 
     getters: {
 
-        isOffline: state => {
-
-            return state.isOffline;
-
-        },
-
         isInitializing: state => {
 
             return state.initializers > 0;
-
-        },
-
-        isAuthenticating: state => {
-
-            return state.isAuthenticating;
-
-        },
-
-        isAuthenticated: state => {
-
-            return state.isAuthenticated;
 
         }
 
