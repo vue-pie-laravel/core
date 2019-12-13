@@ -1,4 +1,4 @@
-path = require('path');
+const path = require('path');
 
 const target = 'http://192.168.10.10';
 
@@ -11,10 +11,8 @@ module.exports = {
         msTileColor: '#4DBA87'
     },
 
-    baseUrl: undefined,
-    assetsDir: undefined,
-
     devServer: {
+        https: true,
         disableHostCheck: true,
         proxy: {
             '^/api': {
@@ -36,12 +34,16 @@ module.exports = {
     },
 
     outputDir: 'public',
+    assetsDir: undefined,
     runtimeCompiler: true,
     filenameHashing: true,
     productionSourceMap: undefined,
-    parallel: undefined,
-    css: undefined,
+    parallel: true,
 
+    transpileDependencies: [
+        "vuetify"
+    ],
+    
     chainWebpack: config => {
 
         config.plugins.delete('copy');
