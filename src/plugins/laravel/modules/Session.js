@@ -8,7 +8,7 @@ export default {
     actions: {
 
         login({commit, rootState}, input) {
-alert('auth');
+
             commit('SET_AUTHENTICATING', true, {root: true});
 
             return new Promise((resolve, reject) => {
@@ -20,7 +20,7 @@ alert('auth');
                     resolve(response);
 
                 }).catch(error => {
-console.log('error', error.response);
+
                     //commit('SET_OFFLINE', true, {root: true});
                     commit('SET_AUTHENTICATING', false, {root: true});
                     reject(error);
