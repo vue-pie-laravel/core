@@ -1,5 +1,4 @@
 import store from '~/store'
-import Sessions from '../../modules/Session'
 
 import { mapActions } from 'vuex'
 
@@ -17,8 +16,6 @@ export const hook = (vm) => {
 export default {
 
     install: (Vue) => {
-
-        store.registerModule('Laravel/Sessions', Sessions);
 
         Vue.mixin({
 
