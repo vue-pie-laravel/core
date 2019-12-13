@@ -1,4 +1,5 @@
 import axios from 'axios'
+import store from '~/store'
 import {eachRight, get, has, replace} from 'lodash'
 
 const state = {
@@ -78,7 +79,7 @@ const actions = {
         }).catch(error => {
 
             context.commit('SET_OFFLINE', true, {root: true});
-
+            console.error(error);
             // if (error.response) {
             //
             //     if (has(error.response, 'message')) {
@@ -139,6 +140,7 @@ const getters = {
 
 export default {
     namespaced: true,
+    dynamic: true,
     state,
     mutations,
     actions,
