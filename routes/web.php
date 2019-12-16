@@ -21,9 +21,7 @@ Route::prefix('app')->group(function() {
 
     Route::name('app.')->middleware('auth')->group(function() {
 
-        Route::get('/user', function (Request $request) {
-            return $request->user();
-        })->name('user');
+        Route::get('/user', 'ApplicationController@user')->name('user');
 
     });
 
