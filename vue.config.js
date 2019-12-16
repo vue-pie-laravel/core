@@ -59,15 +59,9 @@ module.exports = {
                 })
 
         }
+        
+        config.resolve.alias.set('~', path.resolve('src'))
 
-    },
-
-    configureWebpack: {
-        resolve: {
-            alias: {
-                '~' : path.resolve(__dirname,'src')
-            }
-        }
     }
 
 }
