@@ -32,7 +32,7 @@ class ApplicationController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public final function User(Request $request)
+    public final function user(Request $request)
     {
         $user = $request->user();
 
