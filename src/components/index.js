@@ -11,7 +11,7 @@ import Vue from 'vue'
  * Vue.component('my-static-example', MyStaticExample);
  *
  *
- * === Asyncronous import example (Code splitting) ===
+ * === Asynchronous import example (Code splitting) ===
  *
  * Vue.component('my-async-example', () => import('my-async-example'));
  */
