@@ -17,9 +17,11 @@ class AfterMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Cookie::get('X-CSRF-TOKEN',false) !== csrf_token())
-            return $next($request)->header('X-CSRF-TOKEN',csrf_token());
+        $handle = $next($request);
 
-        return $next($request);
+        if(method_exists($handle, 'header') && $request->header('x-csrf-token', null) !== csrf_token())
+            return $handle->header('X-CSRF-TOKEN', csrf_token());
+
+        return $handle;
     }
 }
