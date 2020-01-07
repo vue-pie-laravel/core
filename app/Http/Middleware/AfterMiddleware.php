@@ -20,7 +20,7 @@ class AfterMiddleware
         $handle = $next($request);
 
         if(method_exists($handle, 'header') && $request->header('x-csrf-token', null) !== csrf_token())
-            return $handle->header('X-CSRF-TOKEN', csrf_token());
+            $handle->header('X-CSRF-TOKEN', csrf_token());
 
         return $handle;
     }
