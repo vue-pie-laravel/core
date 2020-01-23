@@ -39,6 +39,10 @@ module.exports = {
     'vuetify'
   ],
 
+  chainWebpack: config => {
+    config.plugins.delete('copy')
+  },
+  
   configureWebpack: {
     plugins: [
       new HtmlWebpackPlugin({
