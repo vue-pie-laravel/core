@@ -1,67 +1,57 @@
-const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const target = 'http://192.168.10.10';
-
-const isProduction = process.env.NODE_ENV === 'production';
+const target = 'http://192.168.10.10'
 
 module.exports = {
 
-    pwa: {
-        name: 'Lara CLI SPA',
-        msTileColor: '#4DBA87'
-    },
+  pwa: {
+    name: 'Lara CLI SPA'
+  },
 
-    devServer: {
-        https: true,
-        disableHostCheck: true,
-        proxy: {
-            '^/api': {
-                target: target,
-                changeOrigin: true,
-                secure: false,
-                ws: true
-            },
-            '^/app': {
-                target: target,
-                changeOrigin: true,
-                secure: false,
-                ws: true
-            },
-            '^/socket.io': {
-                target: target
-            }
-        }
-    },
-
-    outputDir: 'public',
-    assetsDir: undefined,
-    runtimeCompiler: true,
-    filenameHashing: true,
-    productionSourceMap: undefined,
-    parallel: true,
-
-    transpileDependencies: [
-        "vuetify"
-    ],
-    
-    chainWebpack: config => {
-
-        config.plugins.delete('copy');
-
-        if(isProduction) {
-
-            config
-                .plugin('html')
-                .tap(args => {
-                    args[0].template = 'src/templates/app.blade.php';
-                    args[0].filename = '../resources/views/app.blade.php';
-                    return args
-                })
-
-        }
-        
-        config.resolve.alias.set('~', path.resolve('src'))
-
+  devServer: {
+    https: true,
+    disableHostCheck: true,
+    proxy: {
+      '^/api': {
+        target: target,
+        changeOrigin: true,
+        secure: false,
+        ws: true
+      },
+      '^/app': {
+        target: target,
+        changeOrigin: true,
+        secure: false,
+        ws: true
+      },
+      '^/socket.io': {
+        target: target
+      }
     }
+  },
+
+  assetsDir: 'assets',
+  publicPath: '/app/',
+  outputDir: 'public/app',
+  productionSourceMap: false,
+
+  transpileDependencies: [
+    'vuetify'
+  ],
+
+  configureWebpack: {
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: 'src/templates/app.blade.php',
+        filename: '../../resources/views/layouts/app.blade.php'
+      })
+    ],
+    optimization: {
+      splitChunks: {
+        minSize: 10000,
+        maxSize: 254000
+      }
+    }
+  }
 
 }
