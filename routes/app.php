@@ -15,6 +15,18 @@ use \Illuminate\Http\Request;
 use \Illuminate\Support\Facades\Auth;
 use \Illuminate\Support\Facades\Route;
 
+
+Auth::Routes();
+
+Route::middleware('auth')->group(function() {
+
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    })->name('user');
+
+});
+
+
 /*********************************************
  * Do not place custom routes after this line.
  *
