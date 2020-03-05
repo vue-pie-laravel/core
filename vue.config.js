@@ -9,8 +9,10 @@ module.exports = {
   },
 
   devServer: {
-    https: true,
+
+    https: false,
     disableHostCheck: true,
+
     proxy: {
       '^/api': {
         target: target,
@@ -28,21 +30,13 @@ module.exports = {
         target: target
       }
     }
-  },
 
-  assetsDir: 'assets',
-  publicPath: '/app/',
-  outputDir: 'public/app',
-  productionSourceMap: false,
+  },
 
   transpileDependencies: [
-    'vuetify'
+    // 'vuetify'
   ],
 
-  chainWebpack: config => {
-    config.plugins.delete('copy')
-  },
-  
   configureWebpack: {
     plugins: [
       new HtmlWebpackPlugin({
@@ -52,10 +46,20 @@ module.exports = {
     ],
     optimization: {
       splitChunks: {
-        minSize: 10000,
         maxSize: 254000
       }
     }
-  }
+  },
+
+  chainWebpack: config => {
+    config.plugins.delete('copy')
+  },
+
+  outputDir: 'public/app',
+  assetsDir: 'assets',
+  productionSourceMap: false,
+  publicPath: '/app/',
+
+  runtimeCompiler: true
 
 }
