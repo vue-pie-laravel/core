@@ -93,23 +93,23 @@ window.App = new Vue({
 
     layout () {
       if (this.isMaintenanceMode) {
-        return 'layout-maintenance'
+        return 'layout-status-maintenance'
       }
 
       if (this.error) {
-        return 'layout-error'
+        return 'layout-status-error'
       }
 
       if (this.isOffline) {
-        return 'layout-offline'
+        return 'layout-status-offline'
       }
 
       if (this.isInitializing) {
-        return 'layout-initializing'
+        return 'layout-status-initializing'
       }
 
       if (this.isAuthenticating) {
-        return 'layout-authenticating'
+        return 'layout-status-authenticating'
       }
 
       let layout = this.$route.meta.layout || 'default'
@@ -121,7 +121,7 @@ window.App = new Vue({
 
       // The route requires auth, if not authenticated then render auth layout.
       if (this.isAuthenticated === false) {
-        return 'layout-authenticate'
+        return 'layout-status-authenticate'
       }
 
       // User is authenticated, render current layout.
