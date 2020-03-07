@@ -57,7 +57,7 @@ export default {
           const token = response.headers['x-csrf-token']
 
           axios.defaults.headers.common['X-CSRF-TOKEN'] = token
-          window.csrfToken = router.app.csrfToken = token
+          window.csrfToken = token
         }
 
         router.app.busy--
@@ -86,7 +86,7 @@ export default {
           const token = error.response.headers['x-csrf-token']
 
           axios.defaults.headers.common['X-CSRF-TOKEN'] = token
-          window.csrfToken = router.app.csrfToken = token
+          window.csrfToken = token
         }
 
         if (error.response.hasOwnProperty('status')) {

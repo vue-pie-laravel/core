@@ -76,12 +76,8 @@ You are now all set.
 
 The CSRF token has been elevated to the response header and is now handled passively in a similar manor as an XSRF-TOKEN.
 
-The token is automatically sent with every `axios` POST request, **no** need to manually handle the token... **no** hidden form field, **no** csrfToken post property required.
+The token is automatically sent with every `axios` POST request... **no** hidden form field & **no** `csrfToken` post property required.
 
-An Axios response interceptor detects the token and automatically sets it in your SPA, the token can be accessed using these variable references: `window.Laravel.csrfToken` or `this.$root.csrfToken` in a Vue component.
-
-Token exchange is Sparse, meaning it is only sent when needed, typically this is when a guest becomes an authed user visa versa, or the token is revoked. You will not see the token in every header response or request.
+An `axios` response interceptor detects the token and automatically sets it, the token can be accessed using the window global: `window.Laravel.csrfToken`.
 
 If you are using **SOCKETS**, Out of the box compatibility is supported with [Laravel Echo](https://github.com/laravel/echo) without extra configuration.
-
-In conclusion, You should never have to think about the CSRF Token ever again.
