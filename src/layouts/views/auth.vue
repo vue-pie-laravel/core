@@ -1,27 +1,27 @@
 <template>
 
-    <div class="layout-offline">
+  <div class="layout-offline">
 
-        <div>
+    <div>
 
-            <div class="logo"></div>
+      <div class="logo"></div>
 
-            <div>
-                Login Component should be added here.
-            </div>
-
-        </div>
+      <div>
+        Login Component should be added here.
+      </div>
 
     </div>
+
+  </div>
 
 </template>
 
 <script>
 
-    export default {
+export default {
 
-        name: 'layout-offline'
+  name: 'layout-offline'
 
-    }
+}
 
 </script>

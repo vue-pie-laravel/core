@@ -15,5 +15,3 @@ import Vue from 'vue'
  *
  * Vue.component('my-async-example', () => import('my-async-example'));
  */
- 
- 

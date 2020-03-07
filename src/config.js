@@ -1,19 +1,19 @@
 export const config = {
 
-    mountAppTo: '#app',
-    requestPrefix: '/app',
-    defaultRedirect: '/',
+  mountAppTo: '#app',
+  requestPrefix: '/app',
+  defaultRedirect: '/'
 
-};
+}
 
 export const plugins = {
 
-    axios: {
-        enabled: true
-    },
+  axios: {
+    enabled: true
+  },
 
-    laravel: {
-        enabled: true
-    }
+  laravel: {
+    enabled: true
+  }
 
-};
+}

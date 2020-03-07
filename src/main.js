@@ -1,4 +1,4 @@
-import './sass/app.scss'
+import '@/scss/app.scss'
 
 /**
  * Import Vue.
@@ -6,15 +6,6 @@ import './sass/app.scss'
  */
 
 import Vue from 'vue'
-Vue.config.productionTip = false;
-
-/**
- * Import Lodash.
- * https://lodash.com/docs
- */
-
-import 'lodash'
-Vue.prototype._ = window._;
 
 /**
  * Import application configuration data.
@@ -57,17 +48,19 @@ import App from './App'
 
 import { mapState, mapGetters } from 'vuex'
 
+Vue.config.productionTip = false
+
 Vue.mixin({
 
-    computed: {
+  computed: {
 
-        ...mapState(['user']),
+    ...mapState(['user']),
 
-        ...mapGetters(['isOffline', 'isInitializing', 'isAuthenticating', 'isAuthenticated']),
+    ...mapGetters(['isOffline', 'isInitializing', 'isAuthenticating', 'isAuthenticated'])
 
-    }
+  }
 
-});
+})
 
 /**
  * Initialize Vue App Instance.
@@ -76,97 +69,77 @@ Vue.mixin({
  */
 window.App = new Vue({
 
-    render: h => h(App),
-    store,
-    router,
+  render: h => h(App),
+  store,
+  router,
 
-    data: () => ({
+  data: () => ({
 
-        loading: 0,
-        csrfToken: '',
-        snackbar: {
-            display: false,
-            props: {},
-            text: ''
-        }
-
-    }),
-
-    computed: {
-
-        ...mapState(['user','isAuthenticating','isAuthenticated','isMaintenanceMode','isOffline']),
-
-        ...mapGetters(['isInitializing']),
-
-        isLoading() {
-
-            return this.loading > 0;
-
-        },
-
-        meta() {
-
-            return this.$router.currentRoute.meta;
-
-        },
-
-        layout() {
-
-            if(this.isOffline)
-                return 'layout-offline';
-
-            if (this.isInitializing)
-                return 'layout-initializing';
-
-            if(this.isAuthenticating)
-                return 'layout-authenticating';
-
-            if (this.isMaintenanceMode)
-                return 'layout-maintenance';
-
-            let layout = this.meta.layout || 'default';
-
-            // Current route does not require auth, render current layout.
-            if (this.meta.hasOwnProperty('noAuth') && this.meta.noAuth)
-                return `layout-${layout}`;
-
-            // The route requires auth, if not authenticated then render auth layout.
-            if (this.isAuthenticated === false)
-                return 'layout-auth';
-
-            // User is authenticated, render current layout.
-            return `layout-${layout}`;
-
-        }
-
-    },
-
-    watch: {
-
-        isInitializing(value) {
-
-            this.$emit('app:initializing', value);
-
-            if (!value) {
-
-                this.$emit('app:initialized');
-
-            }
-
-        },
-
-        isAuthenticating(value) {
-
-            this.$emit('app:authenticating', value);
-
-        },
-
-        isAuthenticated(value) {
-
-            this.$emit('app:authenticated', value);
-
-        }
-
+    loading: 0,
+    csrfToken: '',
+    snackbar: {
+      display: false,
+      props: {},
+      text: ''
     }
 
-}).$mount(config.mountAppTo);
+  }),
+
+  computed: {
+
+    ...mapState(['user', 'isAuthenticating', 'isAuthenticated', 'isMaintenanceMode', 'isOffline']),
+
+    ...mapGetters(['isInitializing']),
+
+    isLoading () {
+      return this.loading > 0
+    },
+
+    meta () {
+      return this.$router.currentRoute.meta
+    },
+
+    layout () {
+      if (this.isOffline) { return 'layout-offline' }
+
+      if (this.isInitializing) { return 'layout-initializing' }
+
+      if (this.isAuthenticating) { return 'layout-authenticating' }
+
+      if (this.isMaintenanceMode) { return 'layout-maintenance' }
+
+      let layout = this.meta.layout || 'default'
+
+      // Current route does not require auth, render current layout.
+      if (this.meta.hasOwnProperty('noAuth') && this.meta.noAuth) { return `layout-${layout}` }
+
+      // The route requires auth, if not authenticated then render auth layout.
+      if (this.isAuthenticated === false) { return 'layout-auth' }
+
+      // User is authenticated, render current layout.
+      return `layout-${layout}`
+    }
+
+  },
+
+  watch: {
+
+    isInitializing (value) {
+      this.$emit('app:initializing', value)
+
+      if (!value) {
+        this.$emit('app:initialized')
+      }
+    },
+
+    isAuthenticating (value) {
+      this.$emit('app:authenticating', value)
+    },
+
+    isAuthenticated (value) {
+      this.$emit('app:authenticated', value)
+    }
+
+  }
+
+}).$mount(config.mountAppTo)

@@ -1,89 +1,72 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 const store = new Vuex.Store({
 
-    namespaced: true,
+  namespaced: true,
 
-    state: {
+  state: {
 
-        user: {},
+    user: {},
 
-        initializers: 0,
+    initializers: 0,
 
-        isAuthenticating: false,
+    isAuthenticating: false,
 
-        isAuthenticated: false,
+    isAuthenticated: false,
 
-        isMaintenanceMode: false,
+    isMaintenanceMode: false,
 
-        isOffline: false,
+    isOffline: false
 
+  },
+
+  mutations: {
+
+    SET_USER (state, payload) {
+      if (typeof payload !== 'object') { return }
+
+      state.user = payload
+      state.isAuthenticated = Object.keys(state.user).length > 0
     },
 
-    mutations: {
+    SET_INITIALIZING (state, payload) {
+      if (payload) {
+        state.initializers++
+        return
+      }
 
-        SET_USER(state, payload) {
-
-            if (typeof payload !== 'object')
-                return;
-
-            state.user = payload;
-            state.isAuthenticated = Object.keys(state.user).length > 0;
-
-        },
-
-        SET_INITIALIZING(state, payload) {
-
-            if (payload) {
-
-                state.initializers++;
-                return;
-
-            }
-
-            state.initializers--;
-
-        },
-
-        SET_AUTHENTICATING(state, payload) {
-
-            state.isAuthenticating = payload;
-
-        },
-
-        SET_AUTHENTICATED(state, payload) {
-
-            state.isAuthenticated = payload;
-
-        },
-
-        SET_OFFLINE(state, payload) {
-
-            state.isOffline = payload;
-
-        },
-
-        SET_MAINTENANCE_MODE(state, payload) {
-
-            state.isMaintenanceMode = payload;
-
-        }
-
+      state.initializers--
     },
 
-    getters: {
+    SET_AUTHENTICATING (state, payload) {
+      state.isAuthenticating = payload
+    },
 
-        isInitializing: state => {
+    SET_AUTHENTICATED (state, payload) {
+      state.isAuthenticated = payload
+    },
 
-            return state.initializers > 0;
+    SET_OFFLINE (state, payload) {
+      state.isOffline = payload
+    },
 
-        }
-
+    SET_MAINTENANCE_MODE (state, payload) {
+      state.isMaintenanceMode = payload
     }
 
-});
+  },
 
-export default store;
+  getters: {
+
+    isInitializing: state => {
+      return state.initializers > 0
+    }
+
+  }
+
+})
+
+export default store

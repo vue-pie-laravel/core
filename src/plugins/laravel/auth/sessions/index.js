@@ -1,36 +1,29 @@
-import store from '~/store'
+import store from '@/store'
 
 import { mapActions } from 'vuex'
 
 export const hook = (vm) => {
-
-    vm.$on('app:initialized', () => {
-
-        if(store.state.isOffline === false)
-            vm.authCheck();
-
-    });
-
-};
+  vm.$on('app:initialized', () => {
+    if (store.state.isOffline === false) { vm.authCheck() }
+  })
+}
 
 export default {
 
-    install: (Vue) => {
+  install: (Vue) => {
+    Vue.mixin({
 
-        Vue.mixin({
+      methods: {
 
-            methods: {
+        ...mapActions({
+          authLogin: 'Laravel/Sessions/login',
+          authLogout: 'Laravel/Sessions/logout',
+          authCheck: 'Laravel/Sessions/check'
+        })
 
-                ...mapActions({
-                    authLogin: 'Laravel/Sessions/login',
-                    authLogout: 'Laravel/Sessions/logout',
-                    authCheck: 'Laravel/Sessions/check'
-                })
+      }
 
-            }
+    })
+  }
 
-        });
-
-    }
-
-};
+}

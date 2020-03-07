@@ -1,28 +1,28 @@
 <template>
 
-    <div class="layout-maintenance">
+  <div class="layout-maintenance">
 
-        <div>
+    <div>
 
-            <div class="logo"></div>
+      <div class="logo"></div>
 
-            <div>
-                Maintenance is currently being performed.<br/>
-                Please check back later.
-            </div>
-
-        </div>
+      <div>
+        Maintenance is currently being performed.<br/>
+        Please check back later.
+      </div>
 
     </div>
+
+  </div>
 
 </template>
 
 <script>
 
-    export default {
+export default {
 
-        name: 'layout-maintenance'
+  name: 'layout-maintenance'
 
-    }
+}
 
 </script>
