@@ -35,7 +35,7 @@ export default {
     axios.interceptors.request.use(
       // Do something before request is sent
       function (config) {
-        router.app.loading++
+        router.app.busy++
         return config
       },
 
@@ -43,9 +43,9 @@ export default {
       function (error) {
         if (error.code !== 'ECONNABORTED') { router.app.serviceTimeouts = 0 }
 
-        router.app.loading--
+        router.app.busy--
 
-        if (router.app.loading < 0) { router.app.loading = 0 }
+        if (router.app.busy < 0) { router.app.busy = 0 }
 
         return Promise.reject(error)
       }
@@ -60,18 +60,18 @@ export default {
           window.csrfToken = router.app.csrfToken = token
         }
 
-        router.app.loading--
+        router.app.busy--
 
-        if (router.app.loading < 0) { router.app.loading = 0 }
+        if (router.app.busy < 0) { router.app.busy = 0 }
 
         return response
       },
 
       function (error) {
         if (typeof error !== 'object' || !error.response) {
-          router.app.loading--
+          router.app.busy--
 
-          if (router.app.loading < 0) { router.app.loading = 0 }
+          if (router.app.busy < 0) { router.app.busy = 0 }
 
           if (error.code === 'ECONNABORTED') {
             router.app.serviceTimeouts++
@@ -101,9 +101,9 @@ export default {
           }
         }
 
-        router.app.loading--
+        router.app.busy--
 
-        if (router.app.loading < 0) { router.app.loading = 0 }
+        if (router.app.busy < 0) { router.app.busy = 0 }
 
         return Promise.reject(error)
       }
