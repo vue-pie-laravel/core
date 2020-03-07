@@ -1,14 +1,37 @@
 import Vue from 'vue'
+import DynamicComponent from '@/utility/DynamicComponent/handler'
+import LayoutInitializing from './status/initalizing'
 
 /**
- * Import available layouts.
+ * Import custom layouts.
  */
-import LayoutOffline from './views/offline'
-import LayoutInitializing from './views/initalizing'
-import LayoutAuth from './views/auth'
-import LayoutDefault from './views/default'
 
-Vue.component('layout-offline', LayoutOffline)
-Vue.component('layout-initializing', LayoutInitializing)
-Vue.component('layout-default', LayoutAuth)
-Vue.component('layout-default', LayoutDefault)
+Vue.component('layout-default', () => ({
+  ...DynamicComponent, component: import('./default')
+}))
+
+/**
+ * Import status layouts.
+ */
+
+Vue.component('layout-status-initializing', LayoutInitializing)
+
+Vue.component('layout-status-error', () => ({
+  ...DynamicComponent, component: import('./status/error')
+}))
+
+Vue.component('layout-status-offline', () => ({
+  ...DynamicComponent, component: import('./status/offline')
+}))
+
+Vue.component('layout-status-maintenance', () => ({
+  ...DynamicComponent, component: import('./status/maintenance')
+}))
+
+Vue.component('layout-status-authenticate', () => ({
+  ...DynamicComponent, component: import('./status/authenticate')
+}))
+
+Vue.component('layout-status-authenticating', () => ({
+  ...DynamicComponent, component: import('./status/authenticating')
+}))
