@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
@@ -39,35 +40,26 @@ class LoginController extends Controller
     $this->middleware('guest')->except('logout');
   }
 
-  /**
-   * @inheritdoc
-   */
-  public final function showLoginForm() {
-
-    return view('app');
-
+  public final function showLoginForm()
+  {
+    return view('layouts.app');
   }
 
-  /**
-   * @inheritdoc
-   */
   public final function authenticated(Request $request, $user)
   {
     return response()->json([
-      'user' => $user,
-      'redirect' => session()->pull('url.intended', $this->redirectTo)
+      'user' => User::App(),
+      'redirect' => session()->pull('url.intended')
     ]);
   }
 
-  /**
-   * @inheritdoc
-   */
   public final function logout(Request $request)
   {
     $this->guard()->logout();
 
     $request->session()->invalidate();
 
-    return response('Logged out',200);
+    return response('Logged out', 200);
   }
+
 }
