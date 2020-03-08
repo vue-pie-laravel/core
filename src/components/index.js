@@ -1,17 +1,16 @@
 import Vue from 'vue'
 
 /**
- * Import global components here.
+ * Import prerequisite components here
  * ----------------------------------------------------------------
- *
- *
- * === Static import example ===
- *
- * import MyStaticExample from 'my-static-example'
- * Vue.component('my-static-example', MyStaticExample);
- *
- *
+ */
+
+import vSvg from './global/v-svg'
+
+Vue.component('v-svg', vSvg)
+
+/**
  * === Asynchronous import example (Code splitting) ===
  *
- * Vue.component('my-async-example', () => import('my-async-example'));
+ * Vue.component('my-async-example', () => import('my-async-example'))
  */
