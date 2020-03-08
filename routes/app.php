@@ -11,18 +11,17 @@
 |
 */
 
-use \Illuminate\Http\Request;
 use \Illuminate\Support\Facades\Auth;
 use \Illuminate\Support\Facades\Route;
 
 
 Auth::Routes();
 
+Route::get('/options', 'ApplicationController@options')->name('options');
+
 Route::middleware('auth')->group(function() {
 
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    })->name('user');
+  Route::get('/user', 'ApplicationController@user')->name('user');
 
 });
 
