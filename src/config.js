@@ -2,6 +2,7 @@ export const config = {
 
   mountAppTo: '#app',
   requestPrefix: '/app',
+  requestRetry: 60,
   defaultRedirect: '/'
 
 }
