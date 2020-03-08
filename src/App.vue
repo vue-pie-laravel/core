@@ -2,9 +2,7 @@
 
   <div id="app" class="inherit" v-cloak :class="$root.layout">
 
-    <transition mode="out-in">
-      <component :is="$root.layout"/>
-    </transition>
+    <component :is="$root.layout"/>
 
   </div>
 
