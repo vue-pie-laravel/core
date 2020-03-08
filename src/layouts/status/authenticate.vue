@@ -29,8 +29,8 @@ export default {
     background-image: url(/images/background.svg);
     background-image: url(/images/background.svg), linear-gradient(335deg, rgb(8, 171, 122) 0%, rgb(0, 169, 184) 100%);
     background-repeat: no-repeat;
-    background-position: left center;
-    background-size: cover;
+    background-position: center center;
+    background-size: contain;
 
   }
 

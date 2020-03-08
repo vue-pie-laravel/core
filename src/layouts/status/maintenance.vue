@@ -57,8 +57,8 @@ export default {
     background-image: url(/images/background.svg);
     background-image: url(/images/background.svg), linear-gradient(315deg, #5a2aca 0%, #ca1919 75%);
     background-repeat: no-repeat;
-    background-position: left center;
-    background-size: cover;
+    background-position: center center;
+    background-size: contain;
 
     > div {
 
