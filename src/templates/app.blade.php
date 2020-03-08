@@ -43,8 +43,8 @@
 
       color: white;
       background: #00beff;
-      background-image: url(/images/splash-background.svg);
-      background-image: url(/images/splash-background.svg), linear-gradient(135deg, #00beff 0%, #b8009b 50%);
+      background-image: url(/images/background.svg);
+      background-image: url(/images/background.svg), linear-gradient(135deg, #00beff 0%, #9c43b8 100%);
       background-repeat: no-repeat;
       background-position: left center;
       background-size: cover;

@@ -33,9 +33,9 @@ export default {
     justify-content: center;
     font-size: 16px;
     color: white;
-    background: rgb(8, 171, 122);
+    background: #00beff;
     background-image: url(/images/background.svg);
-    background-image: url(/images/background.svg), linear-gradient(45deg, rgb(8, 171, 122) 0%, rgb(0, 169, 184) 100%);
+    background-image: url(/images/background.svg), linear-gradient(135deg, #00beff 0%, #9c43b8 100%);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: contain;
