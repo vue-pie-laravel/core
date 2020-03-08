@@ -1,6 +1,10 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const target = 'http://192.168.10.10'
+// Homestead
+// const target = 'http://192.168.10.10'
+
+// php artisan serve
+const target = 'http://127.0.0.1:8001'
 
 module.exports = {
 
@@ -41,7 +45,7 @@ module.exports = {
     plugins: [
       new HtmlWebpackPlugin({
         template: 'src/templates/app.blade.php',
-        filename: '../../resources/views/layouts/app.blade.php'
+        filename: '../../resources/views/app.blade.php'
       })
     ],
     optimization: {
