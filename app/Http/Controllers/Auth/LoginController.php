@@ -3,68 +3,71 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
+  /*
+  |--------------------------------------------------------------------------
+  | Login Controller
+  |--------------------------------------------------------------------------
+  |
+  | This controller handles authenticating users for the application and
+  | redirecting them to your home screen. The controller uses a trait
+  | to conveniently provide its functionality to your applications.
+  |
+  */
 
-    use AuthenticatesUsers;
+  use AuthenticatesUsers;
 
-    /**
-     * @deprecated
-     */
-    protected $redirectTo = '/';
+  /**
+   * Where to redirect users after login.
+   *
+   * @var string
+   */
+  protected $redirectTo = RouteServiceProvider::HOME;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
-    }
+  /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct()
+  {
+    $this->middleware('guest')->except('logout');
+  }
 
-    /**
-     * @inheritdoc
-     */
-    public final function showLoginForm() {
+  /**
+   * @inheritdoc
+   */
+  public final function showLoginForm() {
 
-        return view('layouts.app');
+    return view('app');
 
-    }
+  }
 
-    /**
-     * @inheritdoc
-     */
-    public final function authenticated(Request $request, $user)
-    {
-        return response()->json([
-            'user' => $user,
-            'redirect' => session()->pull('url.intended')
-        ]);
-    }
+  /**
+   * @inheritdoc
+   */
+  public final function authenticated(Request $request, $user)
+  {
+    return response()->json([
+      'user' => $user,
+      'redirect' => session()->pull('url.intended', $this->redirectTo)
+    ]);
+  }
 
-    /**
-     * @inheritdoc
-     */
-    public final function logout(Request $request)
-    {
-        $this->guard()->logout();
+  /**
+   * @inheritdoc
+   */
+  public final function logout(Request $request)
+  {
+    $this->guard()->logout();
 
-        $request->session()->invalidate();
+    $request->session()->invalidate();
 
-        return response('Logged out',200);
-    }
+    return response('Logged out',200);
+  }
 }
