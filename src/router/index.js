@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Routes from './routes'
-import Guards from './guards'
+import Routes from './config/routes'
+import Guards from './config/guards'
 
 Vue.use(Router)
 
