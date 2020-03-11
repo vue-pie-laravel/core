@@ -10,6 +10,10 @@ Vue.component('layout-default', () => ({
   ...DynamicComponent, component: import('./default')
 }))
 
+Vue.component('layout-example', () => ({
+  ...DynamicComponent, component: import('./example')
+}))
+
 /**
  * Import status layouts.
  */
@@ -26,10 +30,6 @@ Vue.component('layout-status-offline', () => ({
 
 Vue.component('layout-status-maintenance', () => ({
   ...DynamicComponent, component: import('./status/maintenance')
-}))
-
-Vue.component('layout-status-authenticate', () => ({
-  ...DynamicComponent, component: import('./status/authenticate')
 }))
 
 Vue.component('layout-status-authenticating', () => ({

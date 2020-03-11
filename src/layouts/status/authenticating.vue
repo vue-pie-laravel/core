@@ -5,7 +5,12 @@
     <div>
 
       <img src="/images/loading.svg" width="105"/>
-      <span class="subheading">AUTHENTICATING</span>
+
+      <h2>AUTHENTICATING</h2>
+
+      <p>
+        <small>Checking user authentication.</small>
+      </p>
 
     </div>
 

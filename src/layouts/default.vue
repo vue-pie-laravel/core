@@ -1,6 +1,6 @@
 <template>
 
-  <div class="inherit">Hello World</div>
+  <router-view/>
 
 </template>
 

@@ -24,7 +24,7 @@ class ApplicationController extends Controller
    */
   public final function options(Request $request)
   {
-    if($request->acceptsJson() || $request->ajax()) {
+    if ($request->acceptsJson() || $request->ajax()) {
       return response()->json([
         'routes' => User::Routes(),
         'translations' => User::Language()
@@ -44,7 +44,7 @@ class ApplicationController extends Controller
   {
     $user = $request->user();
 
-    if($user === null)
+    if ($user === null)
       abort(401);
 
     return $user;
