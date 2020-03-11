@@ -44,9 +44,9 @@ class RouteServiceProvider extends ServiceProvider
   {
     $this->mapApiRoutes();
 
-    $this->mapAppRoutes();
-
     $this->mapWebRoutes();
+
+    $this->mapAppRoutes();
 
     //
   }
@@ -82,7 +82,7 @@ class RouteServiceProvider extends ServiceProvider
   }
 
   /**
-   * Define the "api" routes for the application.
+   * Define the "app" routes for the application.
    *
    * These routes are typically stateless.
    *
@@ -92,7 +92,7 @@ class RouteServiceProvider extends ServiceProvider
   {
     Route::prefix('app')
       ->name('app.')
-      ->middleware('app')
+      ->middleware('web')
       ->namespace($this->namespace)
       ->group(base_path('routes/app.php'));
   }
