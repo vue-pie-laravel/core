@@ -8,7 +8,7 @@ export default [
   },
 
   {
-    name: 'welcome',
+    name: 'index',
     path: '/',
     meta: {
       title: 'Welcome',
