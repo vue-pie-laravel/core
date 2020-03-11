@@ -19,7 +19,9 @@ const store = new Vuex.Store({
 
     isMaintenanceMode: false,
 
-    isOffline: false
+    isOffline: false,
+
+    exception: null
 
   },
 
@@ -55,6 +57,10 @@ const store = new Vuex.Store({
 
     SET_MAINTENANCE_MODE (state, payload) {
       state.isMaintenanceMode = payload
+    },
+
+    SET_EXCEPTION (state, payload) {
+      state.exception = payload
     }
 
   },
@@ -63,6 +69,10 @@ const store = new Vuex.Store({
 
     isInitializing: state => {
       return state.initializers > 0
+    },
+
+    hasException: state => {
+      return state.exception != null
     }
 
   }

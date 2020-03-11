@@ -54,10 +54,10 @@ Vue.mixin({
 
   computed: {
 
-    ...mapState(['user', 'isAuthenticating', 'isAuthenticated', 'isMaintenanceMode', 'isOffline', 'error']),
+    ...mapState(['user', 'isAuthenticating', 'isAuthenticated', 'isMaintenanceMode', 'isOffline']),
     ...mapState('Laravel', ['language', 'languages', 'attributes']),
 
-    ...mapGetters(['isInitializing']),
+    ...mapGetters(['isInitializing', 'hasException']),
 
     isBusy () {
       return this.$root.busy > 0
@@ -96,8 +96,8 @@ window.App = new Vue({
         return 'layout-status-maintenance'
       }
 
-      if (this.error) {
-        return 'layout-status-error'
+      if (this.hasException) {
+        return 'layout-status-exception'
       }
 
       if (this.isOffline) {
@@ -114,17 +114,6 @@ window.App = new Vue({
 
       let layout = this.$route.meta.layout || 'default'
 
-      // Current route does not require auth, render current layout.
-      if (this.$route.meta.hasOwnProperty('noAuth') && this.$route.meta.noAuth) {
-        return `layout-${layout}`
-      }
-
-      // The route requires auth, if not authenticated then render auth layout.
-      if (this.isAuthenticated === false) {
-        return 'layout-status-authenticate'
-      }
-
-      // User is authenticated, render current layout.
       return `layout-${layout}`
     }
 

@@ -1,13 +1,18 @@
 <template>
 
-  <div class="layout-error inherit">
+  <div class="layout-exception inherit">
 
     <div>
 
-      <h2>{{ error.title }}</h2>
+      <h2>{{ exception.title || 'ERROR' }}</h2>
 
-      <p v-if="error.message">{{ error.message }}</p>
-      <p v-else>Sorry, There was a problem when trying to process your request.</p>
+      <p>Whoops, there was a problem when trying to process your request</p>
+
+      <template v-if="exception.message">
+        <p>{{ exception.message }}</p>
+      </template>
+
+      <button @click="restart">Restart</button>
 
     </div>
 
@@ -16,14 +21,30 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-  name: 'layout-status-offline'
+  name: 'layout-status-exception',
+
+  computed: {
+
+    ...mapState(['exception'])
+
+  },
+
+  methods: {
+
+    restart () {
+      window.location.reload()
+    }
+
+  }
 }
 </script>
 
 <style lang="scss">
 
-  .layout-error {
+  .layout-exception {
 
     display: flex;
     align-items: center;
@@ -46,6 +67,10 @@ export default {
       align-items: center;
       justify-content: space-between;
 
+    }
+
+    p {
+      text-align: center;
     }
 
   }

@@ -8,16 +8,22 @@ const mutations = {}
 const actions = {
 
   login ({ commit }, input) {
-    commit('SET_AUTHENTICATING', true, { root: true })
+    let silent = input.hasOwnProperty('silent') ? input.silent : false
+
+    commit('SET_AUTHENTICATING', !silent, { root: true })
 
     return new Promise((resolve, reject) => {
       router.app.$http.post(router.app.route('login'), input).then(response => {
         commit('SET_USER', response.data.user, { root: true })
+
         commit('SET_AUTHENTICATING', false, { root: true })
+
         resolve(response)
       }).catch(error => {
-        // commit('SET_OFFLINE', true, {root: true});
+        // TODO commit('SET_EXCEPTION', {}, {root: true});
+
         commit('SET_AUTHENTICATING', false, { root: true })
+
         reject(error)
       })
     })
@@ -55,8 +61,8 @@ const actions = {
     })
   },
 
-  check ({ commit }) {
-    commit('SET_AUTHENTICATING', true, { root: true })
+  check ({ commit }, silent = false) {
+    commit('SET_AUTHENTICATING', !silent, { root: true })
 
     router.app.$http.get(router.app.route('app.user')).then(response => {
       commit('SET_USER', response.data, { root: true })

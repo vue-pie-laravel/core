@@ -65,7 +65,20 @@ const actions = {
       responseType: 'json',
       withCredentials: true
     }).then(response => {
+      // Server responded, ensure offline is set to false.
       context.commit('SET_OFFLINE', false, { root: true })
+
+      let contentType = get(response.headers, 'content-type', 'invalid')
+
+      if (contentType.includes('application/json') === false) {
+        context.commit('SET_EXCEPTION', {
+          title: 'FAILED TO INITIALIZE',
+          message: 'Server responded with invalid response type.'
+        }, {
+          root: true
+        })
+        return
+      }
 
       if (has(response.data, 'attributes')) {
         context.commit('SET_ATTRIBUTES', response.data.attributes)

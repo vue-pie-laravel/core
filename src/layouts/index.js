@@ -20,8 +20,8 @@ Vue.component('layout-example', () => ({
 
 Vue.component('layout-status-initializing', LayoutInitializing)
 
-Vue.component('layout-status-error', () => ({
-  ...DynamicComponent, component: import('./status/error')
+Vue.component('layout-status-exception', () => ({
+  ...DynamicComponent, component: import('./status/exception')
 }))
 
 Vue.component('layout-status-offline', () => ({
