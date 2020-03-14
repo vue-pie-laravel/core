@@ -5,8 +5,10 @@ import Vue from 'vue'
  * ----------------------------------------------------------------
  */
 
+import vInput from './global/input/v-input'
 import vSvg from './global/v-svg'
 
+Vue.component('v-input', vInput)
 Vue.component('v-svg', vSvg)
 
 /**
