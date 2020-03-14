@@ -48,7 +48,12 @@ class Form {
         }
       },
 
-      clear () {
+      clear (field) {
+        if (field) {
+          vm.$delete(this.data, field)
+          return
+        }
+
         vm.$set(this, 'data', {})
         vm.$set(this, 'message', '')
       }
