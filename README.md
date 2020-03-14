@@ -1,6 +1,6 @@
 # Vue-Cli Boiler Plate for building an SPA with Laravel 7.0+
 
-### CORE IS IN DEVELOPMENT ###
+# !!! CORE IS IN DEVELOPMENT !!!
 
 > Some file that are critical to the funcionality of this source are still being worked on and will be added soon.
 
@@ -12,7 +12,7 @@
 > Join the Discord channel: https://discord.gg/sfwEEbh
 
 The aim of this project is to provide developers a compatible [Vue CLI](https://cli.vuejs.org) configuration to build a Vue Single Page Application (SPA) instead of using [Laravel Mix](https://laravel.com/docs/master/mix).
-Laravel Mix can still be used to compile standalone assets for static pages allowing for a SPA & Static site hybrid.
+Laravel Mix can still be used to compile standalone assets for static pages allowing for a SPA & SSR hybrid.
 
 This gives you the option of utilizing different flavours of content delivery so you can use the best of each solution to better serve the needs of each aspect of your project.
 For example, you can build a normal shop front or blog with `static` or `dynamic` content rendered server side yet have a dedicated SPA for your admin area using the all the benefits that come with `Vue Cli`
@@ -54,19 +54,27 @@ Make sure you have installed the following resources in the listed order:
 
 ## Installation
 
-[Install Laravel](https://laravel.com/docs/7.x) 7.0 or higher.
+1) [Install Laravel](https://laravel.com/docs/7.x) 7.*
 
-[Download](https://github.com/laracli/core/archive/master.zip) and unpack this source code over your new Laravel installation.
+2) `composer require laravel/ui`
 
-Choose one of the following ui packages and follow the instructions for your chosen package to complete setup:
+3) [Download](https://github.com/laracli/core/archive/master.zip) and unpack this source code over your new Laravel installation.
 
-> You may also stop here and use just the laracli\core as an empty boilerplate to build a completely bespoke SPA.
+4) Edit `app/Http/Middleware/kernel.php`
 
-[UI Tailwind](https://github.com/laracli/ui-tailwind)
+   1) Add `App\Http\Middleware\AfterMiddleware::class` to `$middleware` array.
+   
+   2) Uncomment `\Illuminate\Session\Middleware\AuthenticateSession::class`     
 
-[UI Vuetify](https://github.com/laracli/ui-vuetify)
+5) Add UI Framework Preset (Optional)
 
-You are now all set.
+    > You may also stop here and use just the laracli\core as an empty boilerplate to build a completely bespoke SPA or choose a pre-configured UI framework below:
+
+    [UI Tailwind](https://github.com/laracli/ui-tailwind)
+
+    [UI Vuetify](https://github.com/laracli/ui-vuetify)
+
+6) Start coding... :)
 
 # FAQ
 
