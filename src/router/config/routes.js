@@ -28,7 +28,7 @@ export default [
       guard: 'auth'
     },
     component: () => ({
-      ...DynamicComponent, component: import('@/views/welcome')
+      ...DynamicComponent, component: import('@/views/guarded-example')
     })
   },
 

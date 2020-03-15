@@ -1,7 +1,12 @@
 <template>
 
   <article>
-    Welcome to your first SPA view.
+    Logged in as {{ user.name }}
+
+    <pre>{{ user }}</pre>
+
+    <button @click="authLogout" :diabled="$root.busy">Logout</button>
+
   </article>
 
 </template>
@@ -10,7 +15,7 @@
 
 export default {
 
-  name: 'view-welcome'
+  name: 'view-guarded-example'
 
 }
 
@@ -21,6 +26,7 @@ export default {
   article {
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     flex-grow: 1;
