@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -48,7 +49,7 @@ class LoginController extends Controller
   public final function authenticated(Request $request, $user)
   {
     return response()->json([
-      'user' => User::App(),
+      'user' => $user,
       'redirect' => session()->pull('url.intended')
     ]);
   }
