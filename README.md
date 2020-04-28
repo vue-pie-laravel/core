@@ -78,6 +78,8 @@ Make sure you have installed the following resources in the listed order:
 
 7) Import project into VUE CLI and Start coding... :)
 
+---
+
 ## Quick Start
 
 Once you have completed the installation steps you can quickly get up and running:
@@ -88,7 +90,25 @@ Once you have completed the installation steps you can quickly get up and runnin
 
 2) Run a second terminal with `vue-cli-service serve` or run `cli-serve` via the [VUE CLI Tool](https://cli.vuejs.org/).
 
+#### Quick Mockup Database
+To use an `sqlite` database for fast mockup development:
+
+1) Edit `.env` find and change `DB_CONNECTION` to  `DB_CONNECTION=sqlite`.
+
+2) Create empty file `/database/database.sqlite`
+
+3) Run `php artisan migrate`
+
+4) To create a test user see [Database: Seeding](https://laravel.com/docs/7.x/seeding)
+
+---
+
 # FAQ
+
+### SPA Routes
+
+#### Where do I add SPA API endpoint routes?
+All your SPA endpoint routes can be configured in `/routes/app.php`
 
 ### CSRF TOKEN
 
