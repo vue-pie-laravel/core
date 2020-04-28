@@ -17,11 +17,11 @@ use \Illuminate\Support\Facades\Route;
 
 Auth::Routes();
 
-Route::get('/options', 'ApplicationController@options')->name('options');
+Route::get('options', 'ApplicationController@options')->name('options');
 
-Route::middleware('auth')->group(function() {
+Route::middleware('auth')->group(function () {
 
-  Route::get('/user', 'ApplicationController@user')->name('user');
+  Route::get('user', 'ApplicationController@user')->name('user');
 
 });
 
