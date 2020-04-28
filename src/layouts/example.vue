@@ -3,7 +3,7 @@
   <main role="main" class="inherit">
 
     <nav role="navigation">
-      <router-link tag="button" :to="{ name: 'welcome' }">Welcome</router-link>
+      <router-link tag="button" :to="{ name: 'index' }">Welcome</router-link>
       <router-link tag="button" :to="{ name: 'guarded' }">Guarded</router-link>
     </nav>
 
@@ -48,25 +48,6 @@ export default {
       flex-shrink: 1;
       background-color: rgba(40, 40, 40, 0.05);
 
-      button {
-
-        outline: none;
-        border: 2px solid transparent;
-        border-radius: 0.25rem;
-        color: rgb(255, 255, 255);
-        font-size: 1rem;
-        letter-spacing: 0.15rem;
-        background-color: rgba(250, 250, 250, 0.2);
-        padding: 0.5rem 1rem;
-        margin: 0.5rem;
-        cursor: pointer;
-
-        &:hover {
-          background-color: rgba(250, 250, 250, 0.25);
-          border-color: rgba(250, 250, 250, 0.25);
-        }
-
-      }
     }
 
   }
