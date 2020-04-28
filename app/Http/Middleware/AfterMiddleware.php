@@ -4,24 +4,34 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cookie;
 
 class AfterMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  Request  $request
-     * @param  Closure  $next
-     * @return mixed
-     */
-    public function handle(Request $request, Closure $next)
-    {
-        $handle = $next($request);
+  /**
+   * Handle an incoming request.
+   *
+   * @param Request $request
+   * @param Closure $next
+   * @return mixed
+   */
+  public function handle(Request $request, Closure $next)
+  {
+    $handle = $next($request);
 
-        if(method_exists($handle, 'header') && $request->header('x-csrf-token', null) !== csrf_token())
-            $handle->header('X-CSRF-TOKEN', csrf_token());
+    # Handle headers for HTTP requests only
+    if (method_exists($handle, 'header')) {
 
-        return $handle;
+      # Available Methods: GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE
+
+      # Set headers for requests excluding listed methods
+      if(!in_array($request->getMethod(), ['OPTIONS'])) {
+
+        $handle->header('X-CSRF-TOKEN', csrf_token());
+
+      }
+
     }
+
+    return $handle;
+  }
 }
