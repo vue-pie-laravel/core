@@ -5,7 +5,7 @@
 
     <pre>{{ user }}</pre>
 
-    <button @click="authLogout" :diabled="$root.busy">Logout</button>
+    <button @click="logout" :diabled="$root.busy">Logout</button>
 
   </article>
 
@@ -15,7 +15,17 @@
 
 export default {
 
-  name: 'view-guarded-example'
+  name: 'view-guarded-example',
+
+  methods: {
+
+    logout () {
+      this.authLogout().then(() => {
+        this.$router.push({ name: 'index' })
+      })
+    }
+
+  }
 
 }
 
