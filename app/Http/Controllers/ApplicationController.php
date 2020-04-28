@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Repositories\AppRepository;
+use App\Repositories\LanguageRepository;
 use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
@@ -26,12 +27,15 @@ class ApplicationController extends Controller
   {
     if ($request->acceptsJson() || $request->ajax()) {
       return response()->json([
-        'routes' => User::Routes(),
-        'translations' => User::Language()
+        'user' => $request->user(),
+        'routes' => AppRepository::Routes(),
+        'translations' => LanguageRepository::Translations(),
+        'language' => LanguageRepository::Language(),
+        'languages' => LanguageRepository::Languages()
       ]);
     }
 
-    abort(400, 'Invalid request type,  ');
+    abort(400, 'Invalid request type');
   }
 
   /**
