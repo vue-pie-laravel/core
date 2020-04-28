@@ -62,7 +62,7 @@ Make sure you have installed the following resources in the listed order:
 
 4) Edit `app/Http/Middleware/kernel.php`
 
-   1) Add `App\Http\Middleware\AfterMiddleware::class` to `$middleware` array.
+   1) Add `\App\Http\Middleware\AfterMiddleware::class` to `$middleware` array.
    
    2) Uncomment `\Illuminate\Session\Middleware\AuthenticateSession::class` to enable Cookie Session Auth.
 
