@@ -11,11 +11,11 @@ const store = new Vuex.Store({
 
     user: {},
 
+    csrfToken: null,
+
     initializers: 0,
 
     isAuthenticating: false,
-
-    isAuthenticated: false,
 
     isMaintenanceMode: false,
 
@@ -28,10 +28,11 @@ const store = new Vuex.Store({
   mutations: {
 
     SET_USER (state, payload) {
-      if (typeof payload !== 'object') { return }
+      if (typeof payload !== 'object') {
+        return
+      }
 
       state.user = payload
-      state.isAuthenticated = Object.keys(state.user).length > 0
     },
 
     SET_INITIALIZING (state, payload) {
@@ -47,10 +48,6 @@ const store = new Vuex.Store({
       state.isAuthenticating = payload
     },
 
-    SET_AUTHENTICATED (state, payload) {
-      state.isAuthenticated = payload
-    },
-
     SET_OFFLINE (state, payload) {
       state.isOffline = payload
     },
@@ -61,6 +58,10 @@ const store = new Vuex.Store({
 
     SET_EXCEPTION (state, payload) {
       state.exception = payload
+    },
+
+    SET_CSRF_TOKEN (state, token) {
+      state.csrfToken = token
     }
 
   },
@@ -69,6 +70,10 @@ const store = new Vuex.Store({
 
     isInitializing: state => {
       return state.initializers > 0
+    },
+
+    isAuthenticated: state => {
+      return state.user != null && Object.keys(state.user).length > 0
     },
 
     hasException: state => {

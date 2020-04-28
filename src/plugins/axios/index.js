@@ -1,5 +1,6 @@
 import axios from 'axios'
-import router from '../../router'
+import router from '@/router'
+import store from '@/store'
 
 export default {
 
@@ -22,7 +23,9 @@ export default {
   register () {
     if (this.params.baseURL) { axios.defaults.baseURL = this.params.baseURL }
 
-    if (this.params.hasOwnProperty('timeout')) { axios.defaults.timeout = this.params.timeout }
+    if (this.params.hasOwnProperty('timeout')) {
+      axios.defaults.timeout = this.params.timeout
+    }
 
     axios.defaults.withCredentials = true
 
@@ -41,11 +44,11 @@ export default {
 
       // Do something with request error
       function (error) {
-        if (error.code !== 'ECONNABORTED') { router.app.serviceTimeouts = 0 }
-
         router.app.busy--
 
-        if (router.app.busy < 0) { router.app.busy = 0 }
+        if (router.app.busy < 0) {
+          router.app.busy = 0
+        }
 
         return Promise.reject(error)
       }
@@ -57,36 +60,34 @@ export default {
           const token = response.headers['x-csrf-token']
 
           axios.defaults.headers.common['X-CSRF-TOKEN'] = token
-          window.csrfToken = token
+          store.commit('SET_CSRF_TOKEN', token)
         }
 
         router.app.busy--
 
-        if (router.app.busy < 0) { router.app.busy = 0 }
+        if (router.app.busy < 0) {
+          router.app.busy = 0
+        }
 
         return response
       },
 
       function (error) {
+        router.app.busy--
+
+        if (router.app.busy < 0) {
+          router.app.busy = 0
+        }
+
         if (typeof error !== 'object' || !error.response) {
-          router.app.busy--
-
-          if (router.app.busy < 0) { router.app.busy = 0 }
-
-          if (error.code === 'ECONNABORTED') {
-            router.app.serviceTimeouts++
-
-            if (router.app.serviceTimeouts <= 3) { return axios.request(error.config) }
-          }
-
-          if (typeof error !== 'object' || !error.response) { return Promise.reject(error) }
+          return Promise.reject(error)
         }
 
         if (error.response.headers.hasOwnProperty('x-csrf-token')) {
           const token = error.response.headers['x-csrf-token']
 
           axios.defaults.headers.common['X-CSRF-TOKEN'] = token
-          window.csrfToken = token
+          store.commit('SET_CSRF_TOKEN', token)
         }
 
         if (error.response.hasOwnProperty('status')) {
@@ -100,10 +101,6 @@ export default {
               break
           }
         }
-
-        router.app.busy--
-
-        if (router.app.busy < 0) { router.app.busy = 0 }
 
         return Promise.reject(error)
       }

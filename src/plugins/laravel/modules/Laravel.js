@@ -62,8 +62,7 @@ const actions = {
     context.commit('SET_OFFLINE', false, { root: true })
 
     axios.get('/app/options', {
-      responseType: 'json',
-      withCredentials: true
+      responseType: 'json'
     }).then(response => {
       // Server responded, ensure offline is set to false.
       context.commit('SET_OFFLINE', false, { root: true })
@@ -113,13 +112,17 @@ const actions = {
         context.commit('SET_TRANSLATIONS', response.data.translations)
       }
 
+      if (has(response.data, 'user')) {
+        context.commit('SET_USER', response.data.user, { root: true })
+      }
+
       if (has(response.data, 'version')) {
         context.commit('SET_VERSION', response.data.version)
       }
     }).catch(error => {
       context.commit('SET_OFFLINE', true, { root: true })
       console.error(error)
-      // if (error.response) { Deprecated ?
+      // if (error.response) { Deprecated ? // TODO : Need to handle error here?
       //
       //     if (has(error.response, 'message')) {
       //
@@ -167,7 +170,10 @@ const getters = {
   route: state => (name, args) => {
     let route = state.routes.find(item => item.name === name)
 
-    if (route == null) { return null }
+    if (route == null) {
+      console.warn(`MISSING ROUTE ${name}`)
+      return null
+    }
 
     return '/' + route.uri.split('/').map(s => s[0] === '{' ? args.shift() : s).join('/')
   }

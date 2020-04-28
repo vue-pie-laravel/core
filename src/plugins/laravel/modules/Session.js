@@ -13,7 +13,7 @@ const actions = {
     commit('SET_AUTHENTICATING', !silent, { root: true })
 
     return new Promise((resolve, reject) => {
-      router.app.$http.post(router.app.route('login'), input).then(response => {
+      router.app.$http.post(router.app.route('app.login'), input).then(response => {
         commit('SET_USER', response.data.user, { root: true })
 
         commit('SET_AUTHENTICATING', false, { root: true })
@@ -29,18 +29,20 @@ const actions = {
     })
   },
 
-  logout ({ dispatch }) {
-    router.app.$http.post(router.app.route('logout')).catch(error => {
+  logout ({ commit, dispatch }) {
+    router.app.$http.post(router.app.route('app.logout')).then(() => {
+      commit('SET_USER', {}, { root: true })
+    }).catch(error => {
       // TODO Handle logout error
       console.error(error)
     }).finally(() => {
-      dispatch('check')
+      dispatch('check', true)
     })
   },
 
   recover (_, input) {
     return new Promise((resolve, reject) => {
-      router.app.$http.post(router.app.route('password.email'), { email: input.email })
+      router.app.$http.post(router.app.route('app.password.email'), { email: input.email })
         .then(response => {
           resolve(response)
         })
@@ -52,7 +54,7 @@ const actions = {
 
   update (_, input) {
     return new Promise((resolve, reject) => {
-      router.app.$http.post(router.app.route('password.reset', { token: router.currentRoute.query.token }), { email: input.email }).then(response => {
+      router.app.$http.post(router.app.route('app.password.reset', { token: router.currentRoute.query.token }), { email: input.email }).then(response => {
         router.push(router.currentRoute.query.redirect || config.redirectTo)
         resolve(response)
       }).catch(error => {
@@ -83,7 +85,6 @@ const actions = {
 
   reset ({ commit }) {
     commit('SET_USER', null, { root: true })
-    commit('SET_AUTHENTICATED', false, { root: true })
   }
 
 }

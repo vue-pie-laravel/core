@@ -29,13 +29,6 @@ export default {
       }
 
     })
-
-    // Laravel Echo Support
-    window.Laravel = {
-
-      csrfToken: window.csrfToken
-
-    }
   }
 
 }
