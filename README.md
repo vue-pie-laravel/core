@@ -82,7 +82,9 @@ Make sure you have installed the following resources in the listed order:
 
 Once you have completed the installation steps you can quickly get up and running:
 
-1) Run a terminal with `php artisan serve`
+> Vue CLI will by default run on port `8000`, Ensure that when serving Laravel to use port `8001`
+
+1) Run a terminal with `php artisan serve --port 8001`
 
 2) Run a second terminal with `vue-cli-service serve` or run `cli-serve` via the [VUE CLI Tool](https://cli.vuejs.org/).
 
