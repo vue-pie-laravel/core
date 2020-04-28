@@ -107,10 +107,16 @@ To use an `sqlite` database for fast mockup development:
 
 ### SPA Routes
 
-#### Where do I add SPA API endpoint routes?
-All your SPA endpoint routes can be configured in `/routes/app.php`
+#### Where are the Apps Laravel Router endpoints?
+SPA endpoint routes can be configured in `/routes/app.php`
 
-### CSRF TOKEN
+#### Where are the Apps Vue Router configured?
+Client Router paths configured in `/src/router/config/routes.js`
+
+#### Where are the Apps Vue Router Navigation Guards configured?
+Client Router Guards configured in `/src/router/config/guards/js`
+
+#### CSRF TOKEN
 
 > How is the csrf_token() handled, I don't see it in the blade template?
 
