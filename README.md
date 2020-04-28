@@ -56,7 +56,7 @@ Make sure you have installed the following resources in the listed order:
 
 1) [Install Laravel](https://laravel.com/docs/7.x) 7.*
 
-2) `composer require laravel/ui`
+2) `composer require laravel/ui` **Don't** follow the packages install instructions, **require only**!
 
 3) [Download](https://github.com/laracli/core/archive/master.zip) then unpack this source code over your new Laravel installation.
 
@@ -74,7 +74,17 @@ Make sure you have installed the following resources in the listed order:
 
     [UI Vuetify](https://github.com/laracli/ui-vuetify) (WIP)
 
-6) Start coding... :)
+6) `yarn install` (recommended) or  `npm install`
+
+7) Import project into VUE CLI and Start coding... :)
+
+## Quick Start
+
+Once you have completed the installation steps you can quickly get up and running:
+
+1) Run a terminal with `php artisan serve`
+
+2) Run a second terminal with `vue-cli-service serve` or run `cli-serve` via the [VUE CLI Tool](https://cli.vuejs.org/).
 
 # FAQ
 
