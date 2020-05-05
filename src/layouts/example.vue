@@ -3,8 +3,23 @@
   <main role="main" class="inherit">
 
     <nav role="navigation">
+
       <router-link tag="button" :to="{ name: 'index' }">Welcome</router-link>
+
       <router-link tag="button" :to="{ name: 'guarded' }">Guarded</router-link>
+
+      <template v-if="isAuthenticated">
+
+        <button @click="logout" :diabled="$root.busy">Logout</button>
+
+      </template>
+
+      <template v-else>
+
+        <button @click="login">Login</button>
+
+      </template>
+
     </nav>
 
     <transition name="component-fade" mode="out-in">
@@ -19,7 +34,21 @@
 
 export default {
 
-  name: 'layout-example'
+  name: 'layout-example',
+
+  methods: {
+
+    login () {
+      this.$router.push({ name: 'login' })
+    },
+
+    logout () {
+      this.authLogout().then(() => {
+        this.$router.push({ name: 'index' })
+      })
+    }
+
+  }
 
 }
 
