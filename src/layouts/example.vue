@@ -8,6 +8,8 @@
 
       <router-link tag="button" :to="{ name: 'guarded' }">Guarded</router-link>
 
+      <router-link tag="button" :to="{ name: 'guarded' }" :disabled="!isAuthenticated">Guarded Toggled</router-link>
+
       <template v-if="isAuthenticated">
 
         <button @click="logout" :diabled="$root.busy">Logout</button>

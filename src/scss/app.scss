@@ -41,6 +41,10 @@ button {
     border-color: rgba(250, 250, 250, 0.25);
   }
 
+  &[disabled] {
+    opacity: 0.5
+  }
+
 }
 
 @media (max-device-width: 620px) {
