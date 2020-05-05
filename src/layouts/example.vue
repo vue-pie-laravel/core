@@ -24,9 +24,13 @@
 
     </nav>
 
-    <transition name="component-fade" mode="out-in">
-      <router-view/>
-    </transition>
+    <div class="router-bucket">
+
+      <transition name="router-view" mode="out-in">
+        <router-view/>
+      </transition>
+
+    </div>
 
   </main>
 
@@ -78,6 +82,30 @@ export default {
       padding: 0.5em;
       flex-shrink: 1;
       background-color: rgba(40, 40, 40, 0.05);
+
+    }
+
+    .router-bucket {
+
+      display: flex;
+      flex-grow: 1;
+
+      position: relative;
+
+      > * {
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        position: absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+
+      }
 
     }
 
