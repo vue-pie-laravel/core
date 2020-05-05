@@ -31,8 +31,12 @@ export default {
 
   computed: {
 
-    error () {
+    errors () {
       return this.hasError ? this.form.errors.get(this.name) : undefined
+    },
+
+    error () {
+      return Array.isArray(this.errors) ? this.errors.shift() : this.errors
     },
 
     hasError () {

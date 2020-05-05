@@ -1,7 +1,13 @@
 <template>
 
   <label class="v-input" :class="{ 'v-input-error' : hasError }" @click="clear">
-    <input v-model="form.input[name]" :disabled="form.busy" :placeholder="placeholder" :type="type" :name="name"/>
+
+    <input v-model="form.input[name]" :disabled="form.busy" :placeholder="label" :type="type" :name="name"/>
+
+    <template v-if="errors">
+      <div v-html="error"></div>
+    </template>
+
   </label>
 
 </template>
@@ -14,15 +20,7 @@ export default {
 
   name: 'v-input',
 
-  mixins: [inputMix],
-
-  computed: {
-
-    placeholder () {
-      return this.error || this.label
-    }
-
-  }
+  mixins: [inputMix]
 
 }
 
@@ -41,7 +39,7 @@ export default {
     letter-spacing: 0.05rem;
     color: inherit;
 
-    input {
+    input, div {
 
       all: inherit;
       margin: 0;
