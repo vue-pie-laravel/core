@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import User from './modules/User'
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -9,13 +11,9 @@ const store = new Vuex.Store({
 
   state: {
 
-    user: {},
-
     csrfToken: null,
 
     initializers: 0,
-
-    isAuthenticating: false,
 
     isMaintenanceMode: false,
 
@@ -27,14 +25,6 @@ const store = new Vuex.Store({
 
   mutations: {
 
-    SET_USER (state, payload) {
-      if (typeof payload !== 'object') {
-        return
-      }
-
-      state.user = payload
-    },
-
     SET_INITIALIZING (state, payload) {
       if (payload) {
         state.initializers++
@@ -42,10 +32,6 @@ const store = new Vuex.Store({
       }
 
       state.initializers--
-    },
-
-    SET_AUTHENTICATING (state, payload) {
-      state.isAuthenticating = payload
     },
 
     SET_OFFLINE (state, payload) {
@@ -72,14 +58,14 @@ const store = new Vuex.Store({
       return state.initializers > 0
     },
 
-    isAuthenticated: state => {
-      return state.user != null && Object.keys(state.user).length > 0
-    },
-
     hasException: state => {
       return state.exception != null
     }
 
+  },
+
+  modules: {
+    User
   }
 
 })

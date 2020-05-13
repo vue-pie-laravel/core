@@ -54,10 +54,13 @@ Vue.mixin({
 
   computed: {
 
-    ...mapState(['user', 'isAuthenticating', 'isMaintenanceMode', 'isOffline']),
-    ...mapState('Laravel', ['language', 'languages', 'attributes']),
+    ...mapGetters(['isInitializing', 'hasException']),
+    ...mapState(['isMaintenanceMode', 'isOffline']),
 
-    ...mapGetters(['isInitializing', 'isAuthenticated', 'hasException']),
+    ...mapGetters('User', ['isAuthenticated']),
+    ...mapState('User', ['user', 'isAuthenticating']),
+
+    ...mapState('Laravel', ['language', 'languages', 'attributes']),
 
     isBusy () {
       return this.$root.busy > 0

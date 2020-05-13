@@ -113,7 +113,7 @@ const actions = {
       }
 
       if (has(response.data, 'user')) {
-        context.commit('SET_USER', response.data.user, { root: true })
+        context.commit('User/SET_USER', response.data.user, { root: true })
       }
 
       if (has(response.data, 'version')) {
