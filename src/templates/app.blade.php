@@ -58,7 +58,7 @@
 <div id="app" v-cloak>
   <div class="app-downloading">
     <span>DOWNLOADING</span>
-    <img src="/assets/images/loading.svg" width="105"/>
+    <img src="/images/loading.svg" width="105"/>
   </div>
 </div>
 </body>
