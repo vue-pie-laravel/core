@@ -32,4 +32,6 @@ Route::middleware('auth')->group(function () {
  * Directs all other requests to Vue Router.
  *********************************************/
 
-Route::get('{vue?}', 'ApplicationController@index')->where('vue', '.*')->name('index');
+Route::get(env('VUE_APP_PATH') . '/{vue?}', 'ApplicationController@index')
+  ->where('vue', '.*')
+  ->name('index');

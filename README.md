@@ -103,6 +103,16 @@ To use an `sqlite` database for fast mockup development:
 
 ---
 
+## How to configure what is served first, SPA or SSC?
+
+> How to serve index as SPA (Single Page Application)?
+
+In `.env` file, either remove `VUE_APP_PATH` config or ensure value is empty.
+
+> How to serve index as SSC (Server Side Content) and SPA on a sub path?
+
+In `.env` file set `VUE_APP_PATH` with the path name you want, `VUE_APP_PATH=admin` will make the SPA load at `http(s):yourdomain.com/admin` and root (`/`) will serve static server side rendered Blade content from Laravel.
+
 # FAQ
 
 ### SPA Routes

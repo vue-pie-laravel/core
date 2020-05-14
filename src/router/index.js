@@ -3,10 +3,13 @@ import Router from 'vue-router'
 import Routes from './config/routes'
 import Guards from './config/guards'
 
+const APP_PATH = `/${process.env.VUE_APP_PATH || ''}`
+
 Vue.use(Router)
 
 let router = new Router({
 
+  base: APP_PATH,
   mode: 'history',
   routes: Routes
 
