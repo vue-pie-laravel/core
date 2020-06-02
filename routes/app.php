@@ -14,14 +14,19 @@
 use \Illuminate\Support\Facades\Auth;
 use \Illuminate\Support\Facades\Route;
 
+Route::prefix('app')->group(function () {
 
-Auth::Routes();
+  Auth::Routes();
 
-Route::get('options', 'ApplicationController@options')->name('options');
+  Route::get('options', 'ApplicationController@options')->name('options');
 
-Route::middleware('auth')->group(function () {
+  Route::middleware('auth')->group(function () {
 
-  Route::get('user', 'ApplicationController@user')->name('user');
+    Route::get('user', 'ApplicationController@user')->name('user');
+
+  });
+
+  // Add custom App end points here
 
 });
 
