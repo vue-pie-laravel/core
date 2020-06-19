@@ -15,6 +15,10 @@ export const plugins = {
 
   laravel: {
     enabled: true
+  },
+
+  echo: {
+    enabled: true
   }
 
 }

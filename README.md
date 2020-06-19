@@ -113,6 +113,53 @@ In `.env` file, either remove `VUE_APP_PATH` config or ensure value is empty.
 
 In `.env` file set `VUE_APP_PATH` with the path name you want, `VUE_APP_PATH=admin` will make the SPA load at `http(s):yourdomain.com/admin` and root (`/`) will serve static server side rendered Blade content from Laravel.
 
+# Using Laravel Web Sockets (Self Hosted)
+
+Run the following commands in the project root:
+
+`yarn add laravel-echo`
+
+`yarn add pusher-js`
+
+`composer require beyondcode/laravel-websockets`
+
+`composer require pusher/pusher-php-server`
+
+`php artisan vendor:publish --provider="BeyondCode\LaravelWebSockets\WebSocketsServiceProvider" --tag="config"`
+
+Apply example configs found in `.env.sockets-example` to your `.env` config.
+
+Edit `config/brodcasting.php` and modify the default `pusher` entry in `connections` to the following:
+
+```
+    'pusher' => [
+        'driver' => 'pusher',
+        'key' => env('PUSHER_APP_KEY'),
+        'secret' => env('PUSHER_APP_SECRET'),
+        'app_id' => env('PUSHER_APP_ID'),
+        'options' => [
+            'cluster' => env('PUSHER_APP_CLUSTER'),
+            'useTLS' => false,
+            'host' => env('LARAVEL_WEBSOCKETS_HOST'),
+            'port' => env('LARAVEL_WEBSOCKETS_PORT'),
+            'scheme' => 'http'
+        ],
+    ],
+
+```
+
+> **NOTE:** Encryption disabled by default for development.
+> If required, ensure encryption has been configured for production.
+
+#### Stats
+To enable socket stats, edit `websockets.php` and set `enable_statistics` to true.
+
+Publish the stats migration script.
+`php artisan vendor:publish --provider="BeyondCode\LaravelWebSockets\WebSocketsServiceProvider" --tag="migrations"`
+
+Run migrate to create the stats table.
+`php artisan migrate`
+
 # FAQ
 
 ### SPA Routes
