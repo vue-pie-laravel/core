@@ -140,6 +140,15 @@ window.App = new Vue({
       this.$emit('app:authenticated', value)
     }
 
+  },
+
+  mounted () {
+    const vm = this
+    // Relay Names Socket Emitted events to Vue Events
+    vm.$Echo.channel('Global').listen('PublicEventEmitter', event => {
+      console.log('PublicEventEmitter', event)
+      vm.$emit(event.name, event.payload)
+    })
   }
 
 }).$mount(config.mountAppTo)
