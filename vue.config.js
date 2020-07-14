@@ -6,6 +6,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 // php artisan serve
 const target = 'http://127.0.0.1:8001'
 
+const secure = false
+
 module.exports = {
 
   pwa: {
@@ -18,16 +20,22 @@ module.exports = {
     disableHostCheck: true,
 
     proxy: {
+      '^/storage': {
+        target: target,
+        changeOrigin: true,
+        secure: secure,
+        ws: false
+      },
       '^/api': {
         target: target,
         changeOrigin: true,
-        secure: false,
+        secure: secure,
         ws: true
       },
       '^/app': {
         target: target,
         changeOrigin: true,
-        secure: false,
+        secure: secure,
         ws: true
       },
       '^/socket.io': {
