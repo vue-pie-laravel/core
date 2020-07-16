@@ -10,7 +10,7 @@ import Vue from 'vue'
 /**
  * Import application configuration data.
  */
-import { config } from './config'
+import { config, plugins } from './config'
 
 /**
  * Import routes.
@@ -144,11 +144,14 @@ window.App = new Vue({
 
   mounted () {
     const vm = this
-    // Relay Names Socket Emitted events to Vue Events
-    vm.$Echo.channel('Global').listen('PublicEventEmitter', event => {
-      console.log('PublicEventEmitter', event)
-      vm.$emit(event.name, event.payload)
-    })
+
+    if (plugins.echo.enabled) {
+      // Relay Names Socket Emitted events to Vue Events
+      vm.$Echo.channel('Global').listen('PublicEventEmitter', event => {
+        console.log('PublicEventEmitter', event)
+        vm.$emit(event.name, event.payload)
+      })
+    }
   }
 
 }).$mount(config.mountAppTo)
