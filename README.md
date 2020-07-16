@@ -151,6 +151,8 @@ Edit `config/brodcasting.php` and modify the default `pusher` entry in `connecti
 > **NOTE:** Encryption disabled by default for development.
 > If required, ensure encryption has been configured for production.
 
+Edit `/config.js` and set `plugins.echo.enabled` to `true`.
+
 #### Stats
 To enable socket stats, edit `websockets.php` and set `enable_statistics` to true.
 
