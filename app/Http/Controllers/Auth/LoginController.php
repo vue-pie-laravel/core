@@ -41,7 +41,7 @@ class LoginController extends Controller
 
   public final function showLoginForm()
   {
-    return view('layouts.app');
+    return view('layouts.vue');
   }
 
   public final function authenticated(Request $request, $user)

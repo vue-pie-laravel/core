@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 // php artisan serve
 const target = 'http://127.0.0.1:8001'
 
-const secure = false
+const secure = process.env.NODE_ENV === 'production'
 
 module.exports = {
 
@@ -16,17 +16,11 @@ module.exports = {
 
   devServer: {
 
-    https: false,
-    disableHostCheck: true,
+    https: secure,
+    disableHostCheck: !secure,
 
     proxy: {
-      '^/storage': {
-        target: target,
-        changeOrigin: true,
-        secure: secure,
-        ws: false
-      },
-      '^/api': {
+      '^/socket.io': {
         target: target,
         changeOrigin: true,
         secure: secure,
@@ -38,8 +32,17 @@ module.exports = {
         secure: secure,
         ws: true
       },
-      '^/socket.io': {
-        target: target
+      '^/storage': {
+        target: target,
+        changeOrigin: true,
+        secure: secure,
+        ws: false
+      },
+      '^/api': {
+        target: target,
+        changeOrigin: true,
+        secure: secure,
+        ws: false
       }
     }
 
@@ -52,8 +55,8 @@ module.exports = {
   configureWebpack: {
     plugins: [
       new HtmlWebpackPlugin({
-        template: 'src/templates/app.blade.php',
-        filename: '../../resources/views/app.blade.php'
+        template: 'src/templates/vue.blade.php',
+        filename: '../../resources/views/layouts/vue.blade.php'
       })
     ],
     optimization: {

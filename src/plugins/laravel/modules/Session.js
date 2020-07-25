@@ -42,7 +42,7 @@ const actions = {
 
   recover (_, input) {
     return new Promise((resolve, reject) => {
-      router.app.$http.post(router.app.route('app.password.email'), { email: input.email })
+      router.app.$http.post(router.app.route('app.password.email'), input)
         .then(response => {
           resolve(response)
         })

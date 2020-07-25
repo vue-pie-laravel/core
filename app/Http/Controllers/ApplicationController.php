@@ -14,7 +14,7 @@ class ApplicationController extends Controller
    */
   public final function index()
   {
-    return view('app');
+    return view('layouts.vue');
   }
 
   /**

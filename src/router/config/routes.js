@@ -34,7 +34,7 @@ export default [
 
   {
     name: 'login',
-    path: '/auth/login',
+    path: '/login',
     meta: {
       title: 'Auth Login'
     },

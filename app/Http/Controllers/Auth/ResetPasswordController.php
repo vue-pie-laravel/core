@@ -41,7 +41,7 @@ class ResetPasswordController extends Controller
 
   public function index()
   {
-    return view('layouts.app');
+    return view('layouts.vue');
   }
 
   public function sendResetResponse(Request $request, $response)

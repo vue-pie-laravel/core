@@ -36,7 +36,7 @@ class ForgotPasswordController extends Controller
     if ($request->acceptsJson() || $request->ajax())
       return abort(422, 'This endpoint does not support this request type');
 
-    return view('layouts.app');
+    return view('layouts.vue');
   }
 
   /**
