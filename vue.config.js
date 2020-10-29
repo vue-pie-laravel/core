@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 // php artisan serve
 const target = 'http://127.0.0.1:8001'
 
-const secure = process.env.NODE_ENV === 'production'
+const secure = false
 
 module.exports = {
 
@@ -17,32 +17,19 @@ module.exports = {
   devServer: {
 
     https: secure,
-    disableHostCheck: !secure,
+    disableHostCheck: false,
 
     proxy: {
-      '^/socket.io': {
+      '^/': {
         target: target,
         changeOrigin: true,
         secure: secure,
-        ws: true
-      },
-      '^/app': {
-        target: target,
-        changeOrigin: true,
-        secure: secure,
-        ws: true
-      },
-      '^/storage': {
-        target: target,
-        changeOrigin: true,
-        secure: secure,
-        ws: false
-      },
-      '^/api': {
-        target: target,
-        changeOrigin: true,
-        secure: secure,
-        ws: false
+        ws: true,
+        bypass: function (req) {
+          if (req.headers.accept.indexOf('html') !== -1) {
+            return '/index.html'
+          }
+        }
       }
     }
 
